@@ -1,3 +1,10 @@
+""" Copyright start
+  Copyright (C) 2008 - 2022 Fortinet Inc.
+  All rights reserved.
+  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
+  Copyright end """
+
+  
 import requests, json, os
 from integrations.crudhub import make_request
 from requests_toolbelt.multipart.encoder import MultipartEncoder
@@ -175,7 +182,7 @@ def update_ticket(config, params, **kwargs):
                                                      '/transitions?expand=transitions.fields')
             transition_response = make_api_call(config, method='GET', endpoint=transition_endpoint)
             transitions = json.loads(transition_response.content.decode('UTF-8'))
-            id = [item['id'] for item in transitions['transitions'] if item['name'] == status]
+            id = [item['id'] for item in transitions['transitions'] if item['to']['name'] == status]
             if len(id) == 0:
                 raise ConnectorError('The Status given is invalid')
             body = {
@@ -185,7 +192,7 @@ def update_ticket(config, params, **kwargs):
             }
             endpoint = "{0}{1}{2}".format(ENDPOINT, issue_key,
                                           '/transitions?expand=transitions.fields')
-            status_response = make_api_call(config, method='POST', endpoint=endpoint, json=body)
+            status_response = make_api_call(config, method='POST', endpoint=endpoint, json=json.dumps(body))
         body = {
             "update": {
                 "comment": [{"add":

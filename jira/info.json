@@ -2,14 +2,14 @@
   "name": "jira",
   "label": "Jira",
   "description": "Jira Service Desk Connector for issue creating, updating and deleting",
-  "publisher": "Fortinet",
-  "cs_approved": true,
+  "publisher": "Community",
+  "cs_approved": false,
   "cs_compatible": true,
-  "version": "1.1.0",
+  "version": "1.1.1",
   "category": "Ticket Creation",
   "icon_small_name": "jira_small.png",
   "icon_large_name": "jira_large.png",
-  "help_online": "https://help.cybersponse.com/support/solutions/articles/17000101338-jira-v1-1-0",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.1.1/jira/237/jira-v1-1-1",
   "configuration": {
     "fields": [
       {
