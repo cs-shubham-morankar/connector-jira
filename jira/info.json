@@ -1,0 +1,1410 @@
+{
+  "name": "jira",
+  "label": "Jira",
+  "description": "Jira Service Desk Connector for issue creating, updating and deleting",
+  "publisher": "Fortinet",
+  "cs_approved": true,
+  "cs_compatible": true,
+  "version": "1.1.0",
+  "category": "Ticket Creation",
+  "icon_small_name": "jira_small.png",
+  "icon_large_name": "jira_large.png",
+  "help_online": "https://help.cybersponse.com/support/solutions/articles/17000101338-jira-v1-1-0",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "description": "URL for the Jira server from where the connector gets notifications.",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "server_url"
+      },
+      {
+        "title": "Username",
+        "description": "Username configured for your account to access the Jira server from where the connector gets notifications.",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "username"
+      },
+      {
+        "title": "API Token",
+        "description": "API Token configured for your account to access the Jira server from where the connector gets notifications.",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "password",
+        "name": "token"
+      },
+      {
+        "title": "Verify SSL",
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not.Defaults to True.",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "value": true
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "create_ticket",
+      "title": "Create Ticket",
+      "description": "Creates a Jira ticket on your configured Jira server based on the project key, ticket summary, type, and description, and other input parameters you have specified.",
+      "category": "investigation",
+      "annotation": "create_ticket",
+      "output_schema": {
+        "id": "",
+        "key": "",
+        "self": "",
+        "status": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Project Key",
+          "description": "Unique project ID that represents the project under which you want to create the Jira ticket.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "project_key",
+          "value": "",
+          "placeholder": "e.g. JIR"
+        },
+        {
+          "title": "Ticket Summary",
+          "description": "Summary or heading of the ticket that you want to create on your configured Jira server.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "ticket_summary",
+          "value": ""
+        },
+        {
+          "title": "Ticket Description",
+          "description": "Description of the ticket that you want to create on your configured Jira server.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "ticket_description",
+          "value": ""
+        },
+        {
+          "title": "Ticket Type",
+          "description": "Type of ticket that you want to create on your configured Jira server.You can add one of the following ticket types: IT Help, Service Request, Service Request with Approvals, Task, or Sub-task.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "issue_type",
+          "tooltip": "IT Help, Service Request, Service Request with Approvals, Task, Sub-task",
+          "value": ""
+        },
+        {
+          "title": "Priority",
+          "description": "(Optional) Priority that you want to set for the Jira ticket that you want to update on your configured Jira server.You can add one of the following priorities: Highest, High, Medium, Low, or Lowest.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "priority",
+          "tooltip": "Highest, High, Medium, Low, Lowest",
+          "value": ""
+        },
+        {
+          "title": "Other Fields",
+          "description": "(Optional) Fields such as Reporter, Assignee, Components that you need to set while creating a ticket.For example: {\"reporter\": {\"name\":\"admin\"}, \"assignee\":{\"name\":\"admin\"}, \"components\":[{\"name\":\"Intranet\"}]}",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "other_fields",
+          "tooltip": "Other fields can be Reporter, Assignee, Components etc",
+          "placeholder": "e.g {\"assignee\": {\"accountId\": \"5ac21efbb31cf552a3acb08c\"}}"
+        }
+      ]
+    },
+    {
+      "operation": "get_ticket_information",
+      "title": "Get Ticket Information",
+      "description": "Retrieves details for a particular Jira ticket from the Jira server based on the ticket ID you have specified.",
+      "category": "investigation",
+      "annotation": "get_ticket_information",
+      "output_schema": {
+        "key": "",
+        "expand": "",
+        "fields": {
+          "customfield_10128": "",
+          "customfield_10101": "",
+          "progress": {
+            "progress": "",
+            "total": ""
+          },
+          "environment": "",
+          "watches": {
+            "self": "",
+            "isWatching": "",
+            "watchCount": ""
+          },
+          "security": "",
+          "customfield_10115": [],
+          "customfield_10141": "",
+          "customfield_10112": "",
+          "customfield_10105": "",
+          "aggregatetimespent": "",
+          "customfield_10122": "",
+          "timeestimate": "",
+          "labels": [],
+          "timeoriginalestimate": "",
+          "components": [],
+          "comment": {
+            "comments": [
+              {
+                "body": "",
+                "id": "",
+                "updated": "",
+                "self": "",
+                "created": "",
+                "author": {
+                  "avatarUrls": {
+                    "48x48": "",
+                    "24x24": "",
+                    "32x32": "",
+                    "16x16": ""
+                  },
+                  "timeZone": "",
+                  "emailAddress": "",
+                  "self": "",
+                  "active": "",
+                  "displayName": "",
+                  "name": "",
+                  "key": "",
+                  "accountId": ""
+                },
+                "updateAuthor": {
+                  "avatarUrls": {
+                    "48x48": "",
+                    "24x24": "",
+                    "32x32": "",
+                    "16x16": ""
+                  },
+                  "timeZone": "",
+                  "emailAddress": "",
+                  "self": "",
+                  "active": "",
+                  "displayName": "",
+                  "name": "",
+                  "key": "",
+                  "accountId": ""
+                }
+              },
+              {
+                "body": "",
+                "id": "",
+                "updated": "",
+                "self": "",
+                "created": "",
+                "author": {
+                  "avatarUrls": {
+                    "48x48": "",
+                    "24x24": "",
+                    "32x32": "",
+                    "16x16": ""
+                  },
+                  "timeZone": "",
+                  "emailAddress": "",
+                  "self": "",
+                  "active": "",
+                  "displayName": "",
+                  "name": "",
+                  "key": "",
+                  "accountId": ""
+                },
+                "updateAuthor": {
+                  "avatarUrls": {
+                    "48x48": "",
+                    "24x24": "",
+                    "32x32": "",
+                    "16x16": ""
+                  },
+                  "timeZone": "",
+                  "emailAddress": "",
+                  "self": "",
+                  "active": "",
+                  "displayName": "",
+                  "name": "",
+                  "key": "",
+                  "accountId": ""
+                }
+              },
+              {
+                "body": "",
+                "id": "",
+                "updated": "",
+                "self": "",
+                "created": "",
+                "author": {
+                  "avatarUrls": {
+                    "48x48": "",
+                    "24x24": "",
+                    "32x32": "",
+                    "16x16": ""
+                  },
+                  "timeZone": "",
+                  "emailAddress": "",
+                  "self": "",
+                  "active": "",
+                  "displayName": "",
+                  "name": "",
+                  "key": "",
+                  "accountId": ""
+                },
+                "updateAuthor": {
+                  "avatarUrls": {
+                    "48x48": "",
+                    "24x24": "",
+                    "32x32": "",
+                    "16x16": ""
+                  },
+                  "timeZone": "",
+                  "emailAddress": "",
+                  "self": "",
+                  "active": "",
+                  "displayName": "",
+                  "name": "",
+                  "key": "",
+                  "accountId": ""
+                }
+              },
+              {
+                "body": "",
+                "id": "",
+                "updated": "",
+                "self": "",
+                "created": "",
+                "author": {
+                  "avatarUrls": {
+                    "48x48": "",
+                    "24x24": "",
+                    "32x32": "",
+                    "16x16": ""
+                  },
+                  "timeZone": "",
+                  "emailAddress": "",
+                  "self": "",
+                  "active": "",
+                  "displayName": "",
+                  "name": "",
+                  "key": "",
+                  "accountId": ""
+                },
+                "updateAuthor": {
+                  "avatarUrls": {
+                    "48x48": "",
+                    "24x24": "",
+                    "32x32": "",
+                    "16x16": ""
+                  },
+                  "timeZone": "",
+                  "emailAddress": "",
+                  "self": "",
+                  "active": "",
+                  "displayName": "",
+                  "name": "",
+                  "key": "",
+                  "accountId": ""
+                }
+              }
+            ],
+            "startAt": "",
+            "total": "",
+            "maxResults": ""
+          },
+          "customfield_10131": "",
+          "customfield_10130": "",
+          "customfield_10120": "",
+          "customfield_10116": "",
+          "versions": [],
+          "customfield_10110": "",
+          "attachment": [],
+          "timespent": "",
+          "customfield_10102": "",
+          "customfield_10108": "",
+          "customfield_10000": "{}",
+          "resolution": "",
+          "duedate": "",
+          "aggregateprogress": {
+            "progress": "",
+            "total": ""
+          },
+          "customfield_10106": "",
+          "customfield_10118": "",
+          "customfield_10125": "",
+          "customfield_10138": {
+            "_links": {
+              "self": ""
+            },
+            "ongoingCycle": {
+              "breached": "",
+              "goalDuration": {
+                "friendly": "",
+                "millis": ""
+              },
+              "withinCalendarHours": "",
+              "paused": "",
+              "startTime": {
+                "friendly": "",
+                "iso8601": "",
+                "epochMillis": "",
+                "jira": ""
+              },
+              "elapsedTime": {
+                "friendly": "",
+                "millis": ""
+              },
+              "remainingTime": {
+                "friendly": "",
+                "millis": ""
+              },
+              "breachTime": {
+                "friendly": "",
+                "iso8601": "",
+                "epochMillis": "",
+                "jira": ""
+              }
+            },
+            "name": "",
+            "id": "",
+            "completedCycles": []
+          },
+          "assignee": "",
+          "customfield_10103": "",
+          "customfield_10134": "",
+          "aggregatetimeestimate": "",
+          "reporter": {
+            "avatarUrls": {
+              "48x48": "",
+              "24x24": "",
+              "32x32": "",
+              "16x16": ""
+            },
+            "timeZone": "",
+            "emailAddress": "",
+            "self": "",
+            "active": "",
+            "displayName": "",
+            "name": "",
+            "key": "",
+            "accountId": ""
+          },
+          "aggregatetimeoriginalestimate": "",
+          "project": {
+            "avatarUrls": {
+              "48x48": "",
+              "24x24": "",
+              "32x32": "",
+              "16x16": ""
+            },
+            "projectTypeKey": "",
+            "id": "",
+            "self": "",
+            "name": "",
+            "key": ""
+          },
+          "customfield_10139": {
+            "_links": {
+              "self": ""
+            },
+            "name": "",
+            "id": "",
+            "completedCycles": [
+              {
+                "breached": "",
+                "goalDuration": {
+                  "friendly": "",
+                  "millis": ""
+                },
+                "startTime": {
+                  "friendly": "",
+                  "iso8601": "",
+                  "epochMillis": "",
+                  "jira": ""
+                },
+                "elapsedTime": {
+                  "friendly": "",
+                  "millis": ""
+                },
+                "remainingTime": {
+                  "friendly": "",
+                  "millis": ""
+                },
+                "stopTime": {
+                  "friendly": "",
+                  "iso8601": "",
+                  "epochMillis": "",
+                  "jira": ""
+                }
+              }
+            ]
+          },
+          "customfield_10135": "",
+          "fixVersions": [],
+          "timetracking": {},
+          "customfield_10127": "",
+          "customfield_10001": [],
+          "customfield_10111": "",
+          "customfield_10126": "",
+          "customfield_10005": "",
+          "votes": {
+            "self": "",
+            "hasVoted": "",
+            "votes": ""
+          },
+          "customfield_10113": "",
+          "creator": {
+            "avatarUrls": {
+              "48x48": "",
+              "24x24": "",
+              "32x32": "",
+              "16x16": ""
+            },
+            "timeZone": "",
+            "emailAddress": "",
+            "self": "",
+            "active": "",
+            "displayName": "",
+            "name": "",
+            "key": "",
+            "accountId": ""
+          },
+          "issuetype": {
+            "description": "",
+            "iconUrl": "",
+            "id": "",
+            "self": "",
+            "subtask": "",
+            "avatarId": "",
+            "name": ""
+          },
+          "created": "",
+          "priority": {
+            "self": "",
+            "iconUrl": "",
+            "name": "",
+            "id": ""
+          },
+          "customfield_10133": "",
+          "customfield_10119": [],
+          "lastViewed": "",
+          "subtasks": [],
+          "customfield_10200": "",
+          "customfield_10104": "",
+          "customfield_10121": "",
+          "customfield_10132": "",
+          "customfield_10123": "",
+          "resolutiondate": "",
+          "customfield_10140": "",
+          "customfield_10117": "",
+          "customfield_10136": "",
+          "summary": "",
+          "customfield_10124": "",
+          "issuelinks": [],
+          "description": "",
+          "workratio": "",
+          "customfield_10137": "",
+          "updated": "",
+          "customfield_10114": "",
+          "customfield_10129": "",
+          "status": {
+            "description": "",
+            "iconUrl": "",
+            "id": "",
+            "self": "",
+            "statusCategory": {
+              "self": "",
+              "colorName": "",
+              "name": "",
+              "id": "",
+              "key": ""
+            },
+            "name": ""
+          },
+          "customfield_10100": "",
+          "worklog": {
+            "total": "",
+            "maxResults": "",
+            "worklogs": [],
+            "startAt": ""
+          },
+          "customfield_10109": "",
+          "customfield_10107": ""
+        },
+        "id": "",
+        "self": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Ticket ID",
+          "description": "Unique ID that is created for each ticket. Enter the ticket ID whose information you want to retrieve from your configured Jira server.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "issue_key",
+          "placeholder": "e.g. JIR-144",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "operation": "list_projects",
+      "title": "List Projects",
+      "description": "Retrieves a list and details of all projects from your configured Jira server.",
+      "category": "investigation",
+      "annotation": "list_projects",
+      "output_schema": [
+        {
+          "expand": "",
+          "self": "",
+          "id": "",
+          "key": "",
+          "name": "",
+          "avatarUrls": {
+            "48x48": "",
+            "24x24": "",
+            "16x16": "",
+            "32x32": ""
+          },
+          "projectTypeKey": "",
+          "simplified": "",
+          "style": "",
+          "isPrivate": "",
+          "properties": {}
+        }
+      ],
+      "enabled": true,
+      "parameters": []
+    },
+    {
+      "operation": "list_tickets",
+      "title": "List Tickets",
+      "description": "Retrieves a list and details of tickets associated with a project from your configured Jira server, based on the project key and other input parameters you have specified.",
+      "category": "investigation",
+      "annotation": "list_tickets",
+      "output_schema": {
+        "expand": "",
+        "startAt": "",
+        "maxResults": "",
+        "total": "",
+        "issues": [
+          {
+            "expand": "",
+            "id": "",
+            "self": "",
+            "key": "",
+            "fields": {
+              "issuetype": {
+                "self": "",
+                "id": "",
+                "description": ".",
+                "iconUrl": "",
+                "name": "",
+                "subtask": "",
+                "avatarId": ""
+              },
+              "timespent": "",
+              "project": {
+                "self": "",
+                "id": "",
+                "key": "",
+                "name": "",
+                "projectTypeKey": "",
+                "avatarUrls": {
+                  "48x48": "",
+                  "24x24": "",
+                  "16x16": "",
+                  "32x32": ""
+                }
+              },
+              "customfield_10110": "",
+              "fixVersions": [],
+              "customfield_10111": "",
+              "aggregatetimespent": "",
+              "customfield_10112": "",
+              "resolution": "",
+              "customfield_10113": "",
+              "customfield_10114": "",
+              "customfield_10104": "",
+              "customfield_10105": "",
+              "customfield_10106": "",
+              "customfield_10107": "",
+              "customfield_10108": "",
+              "customfield_10109": "",
+              "resolutiondate": "",
+              "workratio": "",
+              "lastViewed": "",
+              "watches": {
+                "self": "",
+                "watchCount": "",
+                "isWatching": ""
+              },
+              "created": "",
+              "customfield_10140": "",
+              "customfield_10141": "",
+              "priority": {
+                "self": "",
+                "iconUrl": "",
+                "name": "",
+                "id": ""
+              },
+              "customfield_10100": "",
+              "customfield_10101": "",
+              "customfield_10102": "",
+              "labels": [],
+              "customfield_10103": "",
+              "customfield_10137": "",
+              "customfield_10138": {
+                "id": "",
+                "name": "",
+                "_links": {
+                  "self": ""
+                },
+                "completedCycles": [],
+                "ongoingCycle": {
+                  "startTime": {
+                    "iso8601": "",
+                    "jira": "",
+                    "friendly": "",
+                    "epochMillis": ""
+                  },
+                  "breachTime": {
+                    "iso8601": "",
+                    "jira": "",
+                    "friendly": "",
+                    "epochMillis": ""
+                  },
+                  "breached": "",
+                  "paused": "",
+                  "withinCalendarHours": "",
+                  "goalDuration": {
+                    "millis": "",
+                    "friendly": ""
+                  },
+                  "elapsedTime": {
+                    "millis": "",
+                    "friendly": ""
+                  },
+                  "remainingTime": {
+                    "millis": "",
+                    "friendly": ""
+                  }
+                }
+              },
+              "customfield_10139": {
+                "id": "",
+                "name": "",
+                "_links": {
+                  "self": ""
+                },
+                "completedCycles": [],
+                "ongoingCycle": {
+                  "startTime": {
+                    "iso8601": "",
+                    "jira": "",
+                    "friendly": "",
+                    "epochMillis": ""
+                  },
+                  "breachTime": {
+                    "iso8601": "",
+                    "jira": "",
+                    "friendly": "",
+                    "epochMillis": ""
+                  },
+                  "breached": "",
+                  "paused": "",
+                  "withinCalendarHours": "",
+                  "goalDuration": {
+                    "millis": "",
+                    "friendly": ""
+                  },
+                  "elapsedTime": {
+                    "millis": "",
+                    "friendly": ""
+                  },
+                  "remainingTime": {
+                    "millis": "",
+                    "friendly": ""
+                  }
+                }
+              },
+              "timeestimate": "",
+              "aggregatetimeoriginalestimate": "",
+              "versions": [],
+              "issuelinks": [],
+              "assignee": "",
+              "updated": "",
+              "status": {
+                "self": "",
+                "description": "",
+                "iconUrl": "",
+                "name": "",
+                "id": "",
+                "statusCategory": {
+                  "self": "",
+                  "id": "",
+                  "key": "",
+                  "colorName": "",
+                  "name": ""
+                }
+              },
+              "components": [],
+              "timeoriginalestimate": "",
+              "customfield_10130": "",
+              "description": "",
+              "customfield_10131": "",
+              "customfield_10132": "",
+              "customfield_10133": "",
+              "customfield_10134": "",
+              "customfield_10135": "",
+              "customfield_10136": "",
+              "customfield_10126": "",
+              "customfield_10005": "",
+              "customfield_10127": "",
+              "security": "",
+              "customfield_10128": "",
+              "customfield_10129": "",
+              "aggregatetimeestimate": "",
+              "summary": "",
+              "creator": {
+                "self": "",
+                "name": "",
+                "key": "",
+                "accountId": "",
+                "emailAddress": "",
+                "avatarUrls": {
+                  "48x48": "",
+                  "24x24": "",
+                  "16x16": "",
+                  "32x32": ""
+                },
+                "displayName": "",
+                "active": "",
+                "timeZone": ""
+              },
+              "subtasks": [],
+              "customfield_10120": "",
+              "reporter": {
+                "self": "",
+                "name": "",
+                "key": "",
+                "accountId": "",
+                "emailAddress": "",
+                "avatarUrls": {
+                  "48x48": "",
+                  "24x24": "",
+                  "16x16": "",
+                  "32x32": ""
+                },
+                "displayName": "",
+                "active": "",
+                "timeZone": ""
+              },
+              "customfield_10000": "{}",
+              "aggregateprogress": {
+                "progress": "",
+                "total": ""
+              },
+              "customfield_10121": "",
+              "customfield_10001": [],
+              "customfield_10122": "",
+              "customfield_10123": "",
+              "customfield_10200": "",
+              "customfield_10124": "",
+              "customfield_10125": "",
+              "customfield_10115": [],
+              "customfield_10116": "",
+              "customfield_10117": "",
+              "environment": "",
+              "customfield_10118": "",
+              "customfield_10119": [],
+              "duedate": "",
+              "progress": {
+                "progress": "",
+                "total": ""
+              },
+              "votes": {
+                "self": "",
+                "votes": "",
+                "hasVoted": ""
+              }
+            }
+          }
+        ]
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Project Key",
+          "description": "Unique project ID that represents the project for which you want to retrieve the list and details of Jira tickets from your configured Jira server.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "project_key",
+          "placeholder": "e.g. JIR",
+          "value": ""
+        },
+        {
+          "title": "Status",
+          "description": "(Optional) Status based on which you want to retrieve the list and details of Jira tickets.You can add statuses such as Pending, Back to open, Mark as Done, Start progress, or Reopen issue.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "status",
+          "value": ""
+        },
+        {
+          "title": "Start At",
+          "description": "(Optional) Starting index for retrieving tickets from Jira.By default, this is set to 0.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "startAt",
+          "tooltip": "Start index. Default is 0",
+          "value": "0"
+        },
+        {
+          "title": "Max Results",
+          "description": "(Optional) Maximum number of tickets that this operation should return.By default, this is set to 50.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "maxResults",
+          "tooltip": "Maximum number of tickets to be fetch. Default is 50",
+          "value": "50"
+        },
+        {
+          "title": "Fields",
+          "description": "(Optional) Fields such as, Id, Key, Status, Priority, and Reporter are different types of information in the system that you can choose to be included and displayed in the output.For example: [\"id\",\"key\",\"status\",\"priority\"]",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "fields",
+          "tooltip": "Fields are different types of information in the system displayed in output e.g,id, Key, Status, Priority, Reporter. Provide in list.",
+          "placeholder": "e.g. assignee"
+        }
+      ]
+    },
+    {
+      "operation": "submit_file",
+      "title": "Add Attachment",
+      "description": "Attaches a file that is present in FortiSOAR to an existing Jira ticket on your configured Jira server based on the ticket ID and FortiSOAR file or attachment IRI you have specified.",
+      "category": "investigation",
+      "annotation": "submit_file",
+      "output_schema": {
+        "data": [
+          {
+            "id": "",
+            "self": "",
+            "size": "",
+            "author": {
+              "id": "",
+              "self": "",
+              "active": "",
+              "timeZone": "",
+              "accountId": "",
+              "avatarUrls": {
+                "16x16": "",
+                "24x24": "",
+                "32x32": "",
+                "48x48": ""
+              },
+              "accountType": "",
+              "displayName": "",
+              "emailAddress": ""
+            },
+            "content": "",
+            "created": "",
+            "filename": ""
+          }
+        ],
+        "status": "",
+        "_status": "",
+        "message": "",
+        "operation": "",
+        "request_id": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Ticket ID",
+          "description": "Unique ID that is created for each ticket. Enter the ticket ID to which you want to attach the FortiSOAR file.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "issue_key",
+          "placeholder": "e.g. JIR-144",
+          "value": ""
+        },
+        {
+          "title": "FortiSOAR File/Attachment IRI",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "file_iri",
+          "description": "File that is present in FortiSOAR or the FortiSOAR Attachment IRI of the file that you want to add as an attachment to the specified Jira ticket."
+        }
+      ]
+    },
+    {
+      "operation": "add_remote_link",
+      "title": "Add Remote Link",
+      "description": "Adds a remote link of an issue to an existing ticket in Jira based on the ticket ID, URL, and title you have specified.",
+      "category": "investigation",
+      "annotation": "add_remote_link",
+      "output_schema": {
+        "id": "",
+        "self": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Ticket ID",
+          "description": "Unique ID that is created for each ticket. Enter the ticket ID to which you want to add the remote link.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "issue_key",
+          "placeholder": "e.g. JIR-144",
+          "value": ""
+        },
+        {
+          "title": "URL",
+          "description": "URL of the issue that you want to add to the specified Jira ticket.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "url"
+        },
+        {
+          "title": "Title",
+          "description": "Title that you want to add for the specified issue that you are adding to the Jira ticket.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "title"
+        }
+      ]
+    },
+    {
+      "operation": "add_comment",
+      "title": "Add Comment",
+      "description": "Adds a comment to an existing Jira ticket on your configured Jira server based on the ticket ID and comment you have specified.",
+      "category": "investigation",
+      "annotation": "add_comment",
+      "output_schema": {
+        "body": "",
+        "id": "",
+        "updated": "",
+        "self": "",
+        "created": "",
+        "author": {
+          "avatarUrls": {
+            "48x48": "",
+            "24x24": "",
+            "32x32": "",
+            "16x16": ""
+          },
+          "timeZone": "",
+          "emailAddress": "",
+          "self": "",
+          "active": "",
+          "displayName": "",
+          "name": "",
+          "key": "",
+          "accountId": ""
+        },
+        "updateAuthor": {
+          "avatarUrls": {
+            "48x48": "",
+            "24x24": "",
+            "32x32": "",
+            "16x16": ""
+          },
+          "timeZone": "",
+          "emailAddress": "",
+          "self": "",
+          "active": "",
+          "displayName": "",
+          "name": "",
+          "key": "",
+          "accountId": ""
+        }
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Ticket ID",
+          "description": "Unique ID that is created for each ticket. Enter the ticket ID for the Jira ticket to which you want to add a comment.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "issue_key",
+          "placeholder": "e.g. JIR-144",
+          "value": ""
+        },
+        {
+          "title": "Comment",
+          "description": "Comment that you want to add to an existing Jira ticket.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "comment",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "operation": "get_comments",
+      "title": "Get Comments",
+      "description": "Retrieves a list of comments associated with an existing Jira ticket on your configured Jira server based on the ticket ID and other input parameters you have specified.",
+      "category": "investigation",
+      "annotation": "get_comments",
+      "output_schema": {
+        "startAt": "",
+        "maxResults": "",
+        "total": "",
+        "comments": [
+          {
+            "self": "",
+            "id": "",
+            "author": {
+              "self": "",
+              "id": "",
+              "accountId": "",
+              "emailAddress": "",
+              "avatarUrls": {
+                "48x48": "",
+                "24x24": "",
+                "16x16": "",
+                "32x32": ""
+              },
+              "displayName": "",
+              "active": "",
+              "timeZone": "",
+              "accountType": ""
+            },
+            "body": "",
+            "updateAuthor": {
+              "self": "",
+              "id": "",
+              "accountId": "",
+              "emailAddress": "",
+              "avatarUrls": {
+                "48x48": "",
+                "24x24": "",
+                "16x16": "",
+                "32x32": ""
+              },
+              "displayName": "",
+              "active": "",
+              "timeZone": "",
+              "accountType": ""
+            },
+            "created": "",
+            "updated": "",
+            "jsdPublic": ""
+          }
+        ]
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Ticket ID",
+          "description": "Unique ID that is created for each ticket. Enter the ticket ID whose associated comments you want to retrieve from your configured Jira server.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "issue_key",
+          "placeholder": "e.g. JIR-144",
+          "value": ""
+        },
+        {
+          "title": "Start At",
+          "description": "(Optional) Starting index for retrieving tickets whose comments you want to retrieve from Jira.By default, this is set to 0.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "startAt",
+          "tooltip": "Start index. Default is 0",
+          "value": "0"
+        },
+        {
+          "title": "Max Results",
+          "description": "(Optional) Maximum number of tickets that this operation should return.By default, this is set to 50.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "maxResults",
+          "tooltip": "Maximum number of tickets to be fetch. Default is 50",
+          "value": "50"
+        },
+        {
+          "title": "OrderBy",
+          "description": "Field by which you want to sort the tickets.Possible values are Ascending or Descending",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "options": [
+            "Ascending",
+            "Descending"
+          ],
+          "name": "orderBy",
+          "tooltip": "Accepts created field to sort comments by their created date."
+        }
+      ]
+    },
+    {
+      "operation": "set_status",
+      "title": "Set Ticket Status",
+      "description": "Updates the status of an existing Jira ticket on your configured Jira server based on the ticket ID and status you have specified.",
+      "category": "investigation",
+      "annotation": "set_status",
+      "output_schema": {
+        "message": "",
+        "status": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Ticket ID",
+          "description": "Unique ID that is created for each ticket. Enter the ticket ID for the Jira ticket whose status you want to set.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "issue_key",
+          "placeholder": "e.g. JIR-144",
+          "value": ""
+        },
+        {
+          "title": "Status",
+          "description": "Status that you want to set for an existing Jira ticket.You can add statuses such as Pending, Back to open, Mark as Done, Start progress, or Reopen issue.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "status",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "operation": "update_ticket",
+      "title": "Update Ticket",
+      "description": "Updates an existing Jira ticket on your configured Jira server based on the project key, ticket ID and other input parameters you have specified.",
+      "category": "investigation",
+      "annotation": "update_ticket",
+      "output_schema": {
+        "message": "",
+        "status": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Ticket ID",
+          "description": "Unique ID that is created for each ticket. Enter the ticket ID that you want to update on your configured Jira server.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "issue_key",
+          "placeholder": "e.g. JIR-144",
+          "value": ""
+        },
+        {
+          "title": "Project Key",
+          "description": "Unique project ID that represents the project that contains the Jira ticket that you want to update on your configured Jira server.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "project_key",
+          "placeholder": "e.g. JIR",
+          "value": ""
+        },
+        {
+          "title": "Summary",
+          "description": "Summary or heading of the Jira ticket that you want to update on your configured Jira server.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "summary",
+          "value": ""
+        },
+        {
+          "title": "Comment",
+          "description": "Comment that you want to add to the Jira ticket when you are updating the Jira ticket on your configured Jira server.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "comment",
+          "value": ""
+        },
+        {
+          "title": "Priority",
+          "description": "Priority that you want to set for the Jira ticket that you want to update on your configured Jira server.You can add one of the following priorities: Highest, High, Medium, Low, or Lowest.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "priority",
+          "tooltip": "Highest, High, Medium, Low, Lowest",
+          "value": ""
+        },
+        {
+          "title": "Description",
+          "description": "(Optional) Description that you want to add to the Jira ticket when you are updating the Jira ticket on your configured Jira server.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "description",
+          "value": ""
+        },
+        {
+          "title": "Status",
+          "description": "(Optional) Status that you want to set to the Jira ticket when you are updating the Jira ticket on your configured Jira server.You can add statuses such as Pending, Back to open, Mark as Done, Start progress, or Reopen issue.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "status",
+          "value": ""
+        },
+        {
+          "title": "Other Fields",
+          "description": "(Optional) Fields such as Reporter, Assignee, Components that you need to set while updating a ticket.For example: {\"components\":[{\"name\":\"JIRA\"}]}",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "other_fields",
+          "tooltip": "Other fields can be Components,Reporter,Assignee etc which needs to be updated",
+          "placeholder": "e.g {\"assignee\": {\"accountId\": \"5ac21efbb31cf552a3acb08c\"}}"
+        }
+      ]
+    },
+    {
+      "operation": "update_fortisoar",
+      "title": "Update FortiSOAR Record",
+      "description": "Updates a FortiSOAR record with information on an existing Jira ticket based on the ticket ID and other input parameters you have specified.",
+      "category": "investigation",
+      "annotation": "update_fortisoar_record",
+      "output_schema": {
+        "name": "",
+        "@id": "",
+        "jiraComment": "",
+        "jiraPriority": "",
+        "jiraStatus": "",
+        "description": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Ticket ID",
+          "description": "Unique ID that is created for each ticket. Enter the ticket ID for the Jira ticket that you want to update in FortiSOAR.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "jira_key",
+          "placeholder": "e.g. JIR-144",
+          "value": ""
+        },
+        {
+          "title": "FortiSOAR Username",
+          "description": "Username configured for the FortiSOAR instance where you want to update the Jira ticket.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "cyops_username",
+          "value": ""
+        },
+        {
+          "title": "FortiSOAR Password",
+          "description": "Password configured for the FortiSOAR instance where you want to update the Jira ticket.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "cyops_password",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "operation": "delete_ticket",
+      "title": "Delete Ticket",
+      "description": "Deletes a ticket from your configured Jira server based on the ticket ID and other input parameters you have specified.",
+      "category": "investigation",
+      "annotation": "delete_ticket",
+      "output_schema": {
+        "message": "",
+        "status": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Ticket ID",
+          "description": "Unique ID that is created for each ticket. Enter the ticket ID for the Jira ticket that you want to delete from your configured Jira server.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "issue_key",
+          "placeholder": "e.g. JIR-144",
+          "value": ""
+        },
+        {
+          "title": "Delete Subtasks",
+          "description": "Select this option, i.e., set it to true to delete subtasks associated with the Jira ticket. If the ticket has subtasks then you must select this option so that the ticket can be successfully deleted from your configured Jira server.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "checkbox",
+          "name": "delete_subtask",
+          "tooltip": "If the ticket has subtasks you must set the parameter Delete Subtasks=true to delete the ticket",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}
