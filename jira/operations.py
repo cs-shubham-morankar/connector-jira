@@ -5,7 +5,7 @@
   Copyright end """
 
   
-import requests, json, os
+import requests, json, os, re
 from integrations.crudhub import make_request
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 from connectors.cyops_utilities.builtins import download_file_from_cyops
@@ -140,7 +140,7 @@ def create_ticket(config, params, **kwargs):
             contents = json.loads(response.content.decode('UTF-8'))
             key_id = contents['key']
             param = {'issue_key': key_id}
-            result = get_ticket_information(config, param)
+            result = get_ticket_details(config, param)
             if result:
                 issue_status = result['fields']['status']['name']
                 contents.update({"status": issue_status})
@@ -152,7 +152,7 @@ def create_ticket(config, params, **kwargs):
         raise ConnectorError(Err)
 
 
-def get_ticket_information(config, params, **kwargs):
+def get_ticket_details(config, params, **kwargs):
     try:
         issue_key = params.get('issue_key')
         endpoint = "{0}{1}".format(ENDPOINT, issue_key)
@@ -363,10 +363,9 @@ def list_projects(config, params, **kwargs):
 
 def list_tickets(config, params, **kwargs):
     try:
-        project_key = params.get('project_key')
+        jql_query = params.get('jql_query')
         startAt = params.get('startAt')
         maxResults = params.get('maxResults')
-        status = params.get('status')
         fields = params.get('fields')
         if not fields:
             fields = []
@@ -374,12 +373,16 @@ def list_tickets(config, params, **kwargs):
             if not isinstance(fields, list):
                 fields = fields.split(",")
         endpoint = "{0}".format(SEARCH_ENDPOINT)
+        project_key = re.search(r"project\s?=\s?(\w+)",jql_query)
+        if project_key is None:
+            raise ConnectorError('Project ID is not defined properly in the JQL query, make sure to use the syntax: project = YOUR_PROJECT_ID')
+        project_key = project_key.group(1)
+
         if project_key.lower() in reserved_words:
-            jql_endpoint = "project=" + "\"{0}\"".format(project_key)
-        else:
-            jql_endpoint = "project={0}".format(project_key)
+            jql_query = jql_query.replace(project_key, '"' + project_key + '"')
+        logger.info('Running JQL query:{}'.format(jql_query))
         body = {
-            "jql": jql_endpoint,
+            "jql": jql_query,
             "startAt": startAt,
             "maxResults": maxResults,
             "fields": fields
@@ -391,6 +394,77 @@ def list_tickets(config, params, **kwargs):
             return response.json()
         else:
             raise ConnectorError('Error [{0}] occurred while fetching jira ticket status with status [{1}] code : '.
+                                 format(response.reason, response.status_code))
+    except Exception as Err:
+        raise ConnectorError(Err)
+
+
+def validate_jql_query(config, params, **kwargs):
+    try:
+        endpoint = '/rest/api/3/jql/parse'
+        jql_query = params.get('jql_query')
+        payload = {
+            "queries": [jql_query]
+        }
+        response = make_api_call(config, method='POST', endpoint=endpoint, json=json.dumps(payload))
+        logger.info('Returning JQL Query Validation response : [{0}]'.format(response))
+        if response.ok:
+            return response.json()
+        else:
+            raise ConnectorError('Error [{0}] occurred while validating JQL query with status [{1}] code : '.
+                                 format(response.reason, response.status_code))
+    except Exception as Err:
+        raise ConnectorError(Err)
+
+
+def search_users(config, params, **kwargs):
+    try:
+        endpoint = '/rest/api/3/users/search'
+        url_params = {
+            'startAt': params.get('startAt',0),
+            'maxResults': params.get('maxResults',50)
+        }
+        response = make_api_call(config, method='GET', endpoint=endpoint, params=url_params)
+        if response.ok:
+            return response.json()
+        else:
+            raise ConnectorError('Error [{0}] occurred while searching users with status [{1}] code : '.
+                                 format(response.reason, response.status_code))
+    except Exception as Err:
+        raise ConnectorError(Err)
+
+
+def get_user_details(config, params, **kwargs):
+    try:
+        endpoint = '/rest/api/3/user'
+        url_params = {
+            'accountId': params.get('accountId'),
+            'expand': 'groups,applicationRoles'
+        }
+        response = make_api_call(config, method='GET', endpoint=endpoint, params=url_params)
+        if response.ok:
+            return response.json()
+        else:
+            raise ConnectorError('Error [{0}] occurred while searching user details with status [{1}] code : '.
+                                 format(response.reason, response.status_code))
+    except Exception as Err:
+        raise ConnectorError(Err)
+
+
+def assign_issue(config, params, **kwargs):
+    try:
+        accountId = params.get('accountId', None)
+        issue_key = params.get('issue_key')
+        endpoint = '/rest/api/3/issue/{0}/assignee'.format(issue_key)
+        payload = {
+            'accountId': accountId
+        }
+        response = make_api_call(config, method='PUT', endpoint=endpoint, json=json.dumps(payload))
+        logger.info('Assigning Issue : [{0}] to user [{1}]'.format(issue_key, accountId))
+        if response.status_code == 204:
+            return {'message': 'Issue : [{0}] assigned to user [{1}]'.format(issue_key, accountId)}
+        else:
+            raise ConnectorError('Error [{0}] occurred while assigning issue with status [{1}] code : '.
                                  format(response.reason, response.status_code))
     except Exception as Err:
         raise ConnectorError(Err)
@@ -490,9 +564,13 @@ def update_fortisoar(config, params, **kwargs):
 
 operations = {
     'create_ticket': create_ticket,
-    'get_ticket_information': get_ticket_information,
+    'get_ticket_details': get_ticket_details,
     'list_projects': list_projects,
     'list_tickets': list_tickets,
+    'validate_jql_query': validate_jql_query,
+    'search_users': search_users,
+    'get_user_details': get_user_details,
+    'assign_issue': assign_issue,
     'submit_file': submit_file,
     'add_remote_link': add_remote_link,
     'add_comment': add_comment,
