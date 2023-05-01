@@ -1,2 +1,3 @@
 # connector-jira
-Git branch for connector-jira.
+
+[Documentation](help/docs/index.md)
