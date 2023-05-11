@@ -5,7 +5,7 @@
   "publisher": "Community",
   "cs_approved": false,
   "cs_compatible": true,
-  "version": "1.1.1",
+  "version": "1.2.0",
   "category": "Ticket Creation",
   "icon_small_name": "jira_small.png",
   "icon_large_name": "jira_large.png",
@@ -133,11 +133,11 @@
       ]
     },
     {
-      "operation": "get_ticket_information",
-      "title": "Get Ticket Information",
+      "operation": "get_ticket_details",
+      "title": "Get Ticket Details",
       "description": "Retrieves details for a particular Jira ticket from the Jira server based on the ticket ID you have specified.",
       "category": "investigation",
-      "annotation": "get_ticket_information",
+      "annotation": "get_ticket_details",
       "output_schema": {
         "key": "",
         "expand": "",
@@ -852,25 +852,16 @@
       },
       "enabled": true,
       "parameters": [
-        {
-          "title": "Project Key",
-          "description": "Unique project ID that represents the project for which you want to retrieve the list and details of Jira tickets from your configured Jira server.",
+{
+          "title": "JQL Query",
+          "description": "JIRA query to run. minimum is: project = JIRA_PROJECT_ID",
+          "toolbox": "Check JQL syntax here https://confluence.atlassian.com/jirasoftware/blog/2015/06/search-jira-like-a-boss-with-jql, minimum is: project = PROJECT_NAME",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
-          "name": "project_key",
-          "placeholder": "e.g. JIR",
-          "value": ""
-        },
-        {
-          "title": "Status",
-          "description": "(Optional) Status based on which you want to retrieve the list and details of Jira tickets.You can add statuses such as Pending, Back to open, Mark as Done, Start progress, or Reopen issue.",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "type": "text",
-          "name": "status",
+          "name": "jql_query",
+          "placeholder": "e.g. project = JIRA_PROJECT_ID and updatedDate < -1d",
           "value": ""
         },
         {
@@ -905,6 +896,186 @@
           "name": "fields",
           "tooltip": "Fields are different types of information in the system displayed in output e.g,id, Key, Status, Priority, Reporter. Provide in list.",
           "placeholder": "e.g. assignee"
+        }
+      ]
+    },
+    {
+   "operation":"validate_jql_query",
+   "title":"Validate JQL query",
+   "description":"Parses and validates JQL queries syntax and returns errors when found",
+   "category":"utilities",
+   "annotation":"validate_jql_query",
+   "output_schema":{
+      "queries":[
+         {
+            "query":"",
+            "structure":""
+         },
+         {
+            "query":"",
+            "errors":""
+         }
+      ]
+   },
+   "enabled":true,
+   "parameters":[
+      {
+         "title":"JQL Query",
+         "description":"JQL query to validate",
+         "toolbox":"You can use this action right before running List Tickets to avoid JQL syntax errors",
+         "required":true,
+         "editable":true,
+         "visible":true,
+         "type":"text",
+         "name":"jql_query",
+         "placeholder":"e.g. project = TIC and updatedDate < -1d",
+         "value":""
+      }
+   ]
+},
+    {
+      "operation": "search_users",
+      "title": "Search Users",
+      "description": "Returns a list of all users, including active users, inactive users and previously deleted users that have an Atlassian account.",
+      "category": "investigation",
+      "annotation": "search_users",
+      "output_schema": [
+   {
+      "self":"",
+      "key":"",
+      "accountId":"",
+      "accountType":"",
+      "name":"",
+      "avatarUrls":{
+         "48x48":"",
+         "24x24":"",
+         "16x16":"",
+         "32x32":""
+      },
+      "displayName":"",
+      "active":""
+   },
+   {
+      "self":"",
+      "key":"",
+      "accountId":"",
+      "accountType":"",
+      "name":"",
+      "avatarUrls":{
+         "48x48":"",
+         "24x24":"",
+         "16x16":"",
+         "32x32":""
+      },
+      "displayName":"",
+      "active":""
+   }
+],
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Start At",
+          "description": "(Optional) Starting index for retrieving users from Jira.By default, this is set to 0.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "startAt",
+          "tooltip": "Start index. Default is 0",
+          "value": "0"
+        },
+        {
+          "title": "Max Results",
+          "description": "(Optional) Maximum number of users that this operation should return.By default, this is set to 50.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "name": "maxResults",
+          "tooltip": "Maximum number of users to be fetch. Default is 50",
+          "value": "50"
+        }
+      ]
+    },
+    {
+      "operation": "get_user_details",
+      "title": "Get User Details",
+      "description": "Retrieves details for a particular Jira user from the Jira server based on the account ID you have specified.",
+      "category": "investigation",
+      "annotation": "get_user_details",
+      "output_schema":{
+   "self":"",
+   "key":"",
+   "accountId":"",
+   "accountType":"",
+   "name":"",
+   "emailAddress":"",
+   "avatarUrls":{
+      "48x48":"",
+      "24x24":"",
+      "16x16":"",
+      "32x32":""
+   },
+   "displayName":"",
+   "active":"",
+   "timeZone":"",
+   "groups":{
+      "size":"",
+      "items":""
+   },
+   "applicationRoles":{
+      "size":"",
+      "items":""
+   }
+},
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Account ID",
+          "description": "The account ID of the user, which uniquely identifies the user across all Atlassian products, you can get it from Search Users.",
+          "tooltip": "The account ID of the user, which uniquely identifies the user across all Atlassian products, you can get it from Search Users.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "accountId",
+          "placeholder": "e.g. 5b10ac8d82e05b22cc7d4ef5",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "operation": "assign_issue",
+      "title": "Assign Issue to User",
+      "description": "Assigns an issue to a user.",
+      "category": "investigation",
+      "annotation": "assign_issue",
+      "output_schema": "",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Account ID",
+          "description": "The account ID of the assignee, if set to -1 the issue will be unassigned, You can get all users IDs via Search Users action.",
+          "tooltip": "The account ID of the assignee, if set to -1 the issue will be unassigned, You can get all users IDs via Search Users action.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "accountId",
+          "placeholder": "e.g. 5b10ac8d82e05b22cc7d4ef5",
+          "value": ""
+        },
+        {
+          "title": "Ticket ID",
+          "description": "Unique ID or key of the issue to be assigned.",
+          "tooltip": "Unique ID or key of the issue to be assigned.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "issue_key",
+          "placeholder": "e.g. JIR-144",
+          "value": ""
         }
       ]
     },
