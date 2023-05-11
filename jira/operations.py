@@ -90,11 +90,16 @@ def make_api_call(config, method, endpoint=None, json=None, headers=None, files=
 
 def check_health(config):
     try:
-        if make_api_call(config=config, method='GET'):
+        projects = list_projects(config, None)
+        logger.debug('Health Check: {}'.format(projects))
+        if len(projects) > 0:
             return True
+        else:
+            logger.exception('Error occurred while connecting to server, check credentials and make sure you have at least one JIRA project')
+            raise ConnectorError('Error occurred while connecting to server, check credentials and make sure you have at least one JIRA project')
     except Exception as Err:
-        logger.exception('Error occured while connecting server: {}'.format(str(Err)))
-        raise ConnectorError('Error occured while connecting server: {}'.format(Err))
+        logger.exception('Error occurred while connecting to server: {}'.format(str(Err)))
+        raise ConnectorError('Error occurred while connecting to server: {}'.format(Err))
 
 
 def check_payload(payload):
