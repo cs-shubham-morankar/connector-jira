@@ -1,11 +1,12 @@
 """ Copyright start
-  Copyright (C) 2008 - 2022 Fortinet Inc.
+  Copyright (C) 2008 - 2023 Fortinet Inc.
   All rights reserved.
   FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
   Copyright end """
 
   
 import requests, json, os, re
+from os.path import join
 from integrations.crudhub import make_request
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 from connectors.cyops_utilities.builtins import download_file_from_cyops
@@ -228,18 +229,23 @@ def update_ticket(config, params, **kwargs):
         raise ConnectorError(Err)
 
 
-def _download_file(iri):
+def _get_file_data(iri_type, iri):
     try:
-        if iri.startswith('/api/3/attachments/'):
+        file_name = None
+        if iri_type == 'Attachment ID':
+            if not iri.startswith('/api/3/attachments/'):
+                iri = '/api/3/attachments/{0}'.format(iri)
             attachment_data = make_request(iri, 'GET')
             file_iri = attachment_data['file']['@id']
+            file_name = attachment_data['file']['filename']
         else:
             file_iri = iri
         file_download_response = download_file_from_cyops(file_iri)
-        file_path = file_download_response['cyops_file_path']
-        file_name = file_download_response['filename']
+        if not file_name:
+                file_name = file_download_response['filename']
+        file_path = join('/tmp', file_download_response['cyops_file_path'])
         logger.info('file id = %s, file_name = %s' % (file_iri, file_name))
-        return os.path.join(settings.TMP_FILE_ROOT, file_path), file_name
+        return file_name, file_path
     except Exception as err:
         logger.exception(str(err))
         raise ConnectorError('could not find attachment with id {}'.format(str(iri)))
@@ -248,8 +254,9 @@ def _download_file(iri):
 def submit_file(config, params, **kwargs):
     issue_key = params.get('issue_key')
     endpoint = "{0}{1}{2}".format(ENDPOINT, issue_key, '/attachments')
-    file_iri = params.get('file_iri')
-    file_path, file_name = _download_file(file_iri)
+    iri_type = params.get('path')
+    iri = params.get('value')
+    file_name, file_path = _get_file_data(iri_type, iri)
     with open(file_path, 'rb') as attachment:
         file_data = attachment.read()
     files = {'file': (file_name, file_data)}
