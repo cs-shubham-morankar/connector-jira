@@ -140,6 +140,11 @@ def create_ticket(config, params, **kwargs):
         }
         if other_fields:
             body['fields'].update(other_fields)
+        if params.get('parent'):
+            parent_body = {
+                             "parent":{"key": params.get('parent')}
+                          }
+            body['fields'].update(parent_body)
         payload1 = check_payload(body)
         response = make_api_call(config, method='POST', endpoint=ENDPOINT, json=json.dumps(payload1))
         if response.ok:

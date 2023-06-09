@@ -112,6 +112,18 @@
           "value": ""
         },
         {
+          "title": "Parent Key ID",
+          "description": "The ID of the ticket under which you need to create subtask. This field is only needed when the ticket type is Subtask. e.g. DEMO-1",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "parent",
+          "placeholder": "The ID of the ticket under which you need to create subtask. This field is only needed when the ticket type is Subtask. e.g. DEMO-1",
+          "tooltip": "The ID of the ticket under which you need to create subtask. This field is only needed when the ticket type is Subtask. e.g. DEMO-1",
+          "value": ""
+        },
+        {
           "title": "Priority",
           "description": "(Optional) Priority that you want to set for the Jira ticket that you want to update on your configured Jira server.You can add one of the following priorities: Highest, High, Medium, Low, or Lowest.",
           "required": false,
