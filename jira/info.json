@@ -1441,14 +1441,14 @@
         },
         {
           "title": "Status",
-          "description": "Status that you want to set for an existing Jira ticket.You can add statuses such as Pending, Back to open, Mark as Done, Start progress, or Reopen issue.",
+          "description": "Status that you want to set for an existing Jira ticket.You can add statuses such as To Do, In Progress, or Done.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "status",
           "value": "",
-          "tooltip": "Ticket Status. e.g. Pending, Back to open, Mark as Done, Start progress, or Reopen issue."
+          "tooltip": "Ticket Status. e.g. To Do, In Progress, or Done."
         }
       ]
     },
@@ -1534,14 +1534,14 @@
         },
         {
           "title": "Status",
-          "description": "(Optional) Status that you want to set to the Jira ticket when you are updating the Jira ticket on your configured Jira server.You can add statuses such as Pending, Back to open, Mark as Done, Start progress, or Reopen issue.",
+          "description": "(Optional) Status that you want to set to the Jira ticket when you are updating the Jira ticket on your configured Jira server.You can add statuses such as To Do, In Progress, or Done.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "status",
           "value": "",
-          "tooltip": "Ticket Status. e.g. Pending, Back to open, Mark as Done, Start progress, or Reopen issue."
+          "tooltip": "Ticket Status. e.g. To Do, In Progress, or Done."
         },
         {
           "title": "Other Fields",
