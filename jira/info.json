@@ -9,7 +9,7 @@
   "category": "Ticket Creation",
   "icon_small_name": "jira_small.png",
   "icon_large_name": "jira_large.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.2.0/jira/609/jira-v1-2-0",
   "configuration": {
     "fields": [
       {
@@ -41,7 +41,7 @@
       },
       {
         "title": "Verify SSL",
-        "description": "Specifies whether the SSL certificate for the server is to be verified or not.Defaults to True.",
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set to True.",
         "required": false,
         "editable": true,
         "visible": true,
@@ -68,7 +68,7 @@
       "parameters": [
         {
           "title": "Project Key",
-          "description": "Unique project ID that represents the project under which you want to create the Jira ticket.",
+          "description": "Specify the unique project ID that represents the project under which to create the Jira ticket.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -80,7 +80,7 @@
         },
         {
           "title": "Ticket Summary",
-          "description": "Summary or heading of the ticket that you want to create on your configured Jira server.",
+          "description": "Specify the summary or heading of the ticket to create on your configured Jira server.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -91,7 +91,7 @@
         },
         {
           "title": "Ticket Description",
-          "description": "Description of the ticket that you want to create on your configured Jira server.",
+          "description": "Specify the description of the ticket to create on your configured Jira server.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -102,18 +102,18 @@
         },
         {
           "title": "Ticket Type",
-          "description": "Type of ticket that you want to create on your configured Jira server.You can add one of the following ticket types: IT Help, Service Request, Service Request with Approvals, Task, or Sub-task.",
+          "description": "Specify the type of ticket to create on your configured Jira server.You can specify the following ticket types: IT Help, Service Request, Service Request with Approvals, Task, or Sub-task.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "issue_type",
-          "tooltip": "IT Help, Service Request, Service Request with Approvals, Task, Sub-task",
+          "tooltip": "IT Help, Service Request, Service Request with Approvals, Task, Sub-task.",
           "value": ""
         },
         {
           "title": "Parent Key ID",
-          "description": "The ID of the ticket under which you need to create subtask. This field is only needed when the ticket type is Subtask. e.g. DEMO-1",
+          "description": "Specify the ID of the ticket under which to create subtask. This field is only needed when the ticket type is Subtask. For example DEMO-1.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -125,24 +125,24 @@
         },
         {
           "title": "Priority",
-          "description": "(Optional) Priority that you want to set for the Jira ticket that you want to update on your configured Jira server.You can add one of the following priorities: Highest, High, Medium, Low, or Lowest.",
+          "description": "(Optional) Specify the priority to set for the Jira ticket to update on your configured Jira server. You can specify one of the following priorities: Highest, High, Medium, Low, or Lowest.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "priority",
-          "tooltip": "Highest, High, Medium, Low, Lowest",
+          "tooltip": "Highest, High, Medium, Low, Lowest.",
           "value": ""
         },
         {
           "title": "Other Fields",
-          "description": "(Optional) Fields such as Reporter, Assignee, Components that you need to set while creating a ticket.For example: {\"reporter\": {\"name\":\"admin\"}, \"assignee\":{\"name\":\"admin\"}, \"components\":[{\"name\":\"Intranet\"}]}",
+          "description": "(Optional) Specify fields such as Reporter, Assignee, or Components to set while creating a ticket. For example: {\"reporter\": {\"name\":\"admin\"}, \"assignee\":{\"name\":\"admin\"}, \"components\":[{\"name\":\"Intranet\"}]}",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "json",
           "name": "other_fields",
-          "tooltip": "Other fields can be Reporter, Assignee, Components etc",
+          "tooltip": "Other fields can be Reporter, Assignee, Components etc.",
           "placeholder": "e.g {\"assignee\": {\"accountId\": \"5ac21efbb31cf552a3acb08c\"}}"
         }
       ]
@@ -569,7 +569,7 @@
       "parameters": [
         {
           "title": "Ticket ID",
-          "description": "Unique ID that is created for each ticket. Enter the ticket ID whose information you want to retrieve from your configured Jira server.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "description": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-000, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -870,7 +870,7 @@
       "parameters": [
         {
           "title": "JQL Query",
-          "description": "JIRA query to run. minimum is: project = JIRA_PROJECT_ID",
+          "description": "Specify the Jira query to filter and list the tickets as per query parameters. You must specify at least one query parameter. For example, project = JIRA_PROJECT_ID.",
           "toolbox": "Check JQL syntax here https://confluence.atlassian.com/jirasoftware/blog/2015/06/search-jira-like-a-boss-with-jql, minimum is: project = PROJECT_NAME",
           "required": true,
           "editable": true,
@@ -883,29 +883,29 @@
         },
         {
           "title": "Start At",
-          "description": "(Optional) Starting index for retrieving tickets from Jira.By default, this is set to 0.",
+          "description": "(Optional) Specify the starting index for retrieving tickets from Jira. By default, this is set to 0.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "integer",
           "name": "startAt",
-          "tooltip": "Start index. Default is 0",
+          "tooltip": "Start index. Default is 0.",
           "value": "0"
         },
         {
           "title": "Max Results",
-          "description": "(Optional) Maximum number of tickets that this operation should return.By default, this is set to 50.",
+          "description": "(Optional) Specify the maximum number of tickets that this operation should return. By default, this is set to 50.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "integer",
           "name": "maxResults",
-          "tooltip": "Maximum number of tickets to be fetch. Default is 50",
+          "tooltip": "Maximum number of tickets to be fetch. Default is 50.",
           "value": "50"
         },
         {
           "title": "Fields",
-          "description": "(Optional) Fields such as, Id, Key, Status, Priority, and Reporter are different types of information in the system that you can choose to be included and displayed in the output.For example: [\"id\",\"key\",\"status\",\"priority\"]",
+          "description": "(Optional) Specify fields such as ID, Key, Status, Priority, and Reporter that you can choose to include and display in the output. For example: [\"id\",\"key\",\"status\",\"priority\"]",
           "required": false,
           "editable": true,
           "visible": true,
@@ -919,7 +919,7 @@
     {
       "operation": "validate_jql_query",
       "title": "Validate JQL query",
-      "description": "Parses and validates JQL queries syntax and returns errors when found",
+      "description": "Parses and validates JQL query syntax and returns errors when found.",
       "category": "utilities",
       "annotation": "validate_jql_query",
       "output_schema": {
@@ -938,7 +938,7 @@
       "parameters": [
         {
           "title": "JQL Query",
-          "description": "JQL query to validate",
+          "description": "Specify the Jira query to validate with the Jira Server. e.g. project = TIC and updatedDate < -1d",
           "toolbox": "You can use this action right before running List Tickets to avoid JQL syntax errors",
           "required": true,
           "editable": true,
@@ -993,24 +993,24 @@
       "parameters": [
         {
           "title": "Start At",
-          "description": "(Optional) Starting index for retrieving users from Jira.By default, this is set to 0.",
+          "description": "(Optional) Specify the starting index for retrieving tickets from Jira. By default, this is set to 0.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "integer",
           "name": "startAt",
-          "tooltip": "Start index. Default is 0",
+          "tooltip": "Start index. Default is 0.",
           "value": "0"
         },
         {
           "title": "Max Results",
-          "description": "(Optional) Maximum number of users that this operation should return.By default, this is set to 50.",
+          "description": "(Optional) Specify the maximum number of tickets that this operation should return. By default, this is set to 50.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "integer",
           "name": "maxResults",
-          "tooltip": "Maximum number of users to be fetch. Default is 50",
+          "tooltip": "Maximum number of users to be fetch. Default is 50.",
           "value": "50"
         }
       ]
@@ -1050,7 +1050,7 @@
       "parameters": [
         {
           "title": "Account ID",
-          "description": "The account ID of the user, which uniquely identifies the user across all Atlassian products, you can get it from Search Users.",
+          "description": "Specify the user's account ID. Account ID uniquely identifies the user across all Atlassian products and you can retrieve it from the Search Users action.",
           "tooltip": "The account ID of the user, which uniquely identifies the user across all Atlassian products, you can get it from Search Users. e.g. 5b10ac8d82e05b22cc7d4ef5",
           "required": true,
           "editable": true,
@@ -1065,7 +1065,7 @@
     {
       "operation": "assign_issue",
       "title": "Assign Issue to User",
-      "description": "Assigns an issue to a user.",
+      "description": "Assigns an issue to a user based on the account and ticket ID that you have specified.",
       "category": "investigation",
       "annotation": "assign_issue",
       "output_schema": "",
@@ -1073,7 +1073,7 @@
       "parameters": [
         {
           "title": "Account ID",
-          "description": "The account ID of the assignee, if set to -1 the issue will be unassigned, You can get all users IDs via Search Users action.",
+          "description": "Specify the assignee's account ID. Account ID uniquely identifies the user across all Atlassian products and you can retrieve it from the Search Users action. NOTE: To remove all assignees and mark the ticket unassigned, specify -1 in this field.",
           "tooltip": "The account ID of the assignee, if set to -1 the issue will be unassigned, You can get all users IDs via Search Users action. e.g. 5b10ac8d82e05b22cc7d4ef5",
           "required": true,
           "editable": true,
@@ -1085,7 +1085,7 @@
         },
         {
           "title": "Ticket ID",
-          "description": "Unique ID or key of the issue to be assigned.",
+          "description": "Specify the unique ID associated with each ticket.",
           "tooltip": "Unique ID or key of the issue to be assigned. e.g. JIR-144",
           "required": true,
           "editable": true,
@@ -1140,7 +1140,7 @@
       "parameters": [
         {
           "title": "Ticket ID",
-          "description": "Unique ID that is created for each ticket. Enter the ticket ID to which you want to attach the FortiSOAR file.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "description": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-144, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1164,7 +1164,7 @@
             "Attachment ID": [
               {
                 "title": "Attachment ID",
-                "description": "Attachment ID that is used to access the file directly from the FortiSOAR Attachments module. This should be the file that you want to upload to the CTS FortiGuard.",
+                "description": "Specify the attachment ID of the file in the FortiSOAR Attachments module.",
                 "required": false,
                 "editable": true,
                 "visible": true,
@@ -1176,7 +1176,7 @@
             "File IRI": [
               {
                 "title": "File IRI",
-                "description": "File IRI that is used to access the file directly from the FortiSOAR Attachments module. This should be the file that you want to upload to the specified CTS FortiGuard.",
+                "description": "Specify the File IRI of the file in the FortiSOAR Attachments module.",
                 "required": false,
                 "editable": true,
                 "visible": true,
@@ -1188,7 +1188,7 @@
           },
           "value": "Attachment ID",
           "name": "path",
-          "description": "File that is present in FortiSOAR or the FortiSOAR Attachment IRI of the file that you want to add as an attachment to the specified Jira ticket."
+          "description": "Specify the file to add as an attachment to the specified Jira ticket. You can select from the following options: Attachment ID: Specify the attachment ID of the file in the FortiSOAR Attachments module. File IRI: Specify the File IRI of the file in the FortiSOAR Attachments module."
         }
       ]
     },
@@ -1206,7 +1206,7 @@
       "parameters": [
         {
           "title": "Ticket ID",
-          "description": "Unique ID that is created for each ticket. Enter the ticket ID to which you want to add the remote link.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "description": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-144, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1218,7 +1218,7 @@
         },
         {
           "title": "URL",
-          "description": "URL of the issue that you want to add to the specified Jira ticket.",
+          "description": "Specify the URL of the issue to add to the specified Jira ticket.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1228,7 +1228,7 @@
         },
         {
           "title": "Title",
-          "description": "Title that you want to add for the specified issue that you are adding to the Jira ticket.",
+          "description": "Specify the title to add for the specified issue that you are adding to the Jira ticket.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1287,7 +1287,7 @@
       "parameters": [
         {
           "title": "Ticket ID",
-          "description": "Unique ID that is created for each ticket. Enter the ticket ID for the Jira ticket to which you want to add a comment.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "description": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-144, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1299,7 +1299,7 @@
         },
         {
           "title": "Comment",
-          "description": "Comment that you want to add to an existing Jira ticket.",
+          "description": "Specify the comment to add to an existing Jira ticket.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1367,7 +1367,7 @@
       "parameters": [
         {
           "title": "Ticket ID",
-          "description": "Unique ID that is created for each ticket. Enter the ticket ID whose associated comments you want to retrieve from your configured Jira server.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "description": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-144, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1375,33 +1375,33 @@
           "name": "issue_key",
           "placeholder": "e.g. JIR-144",
           "value": "",
-          "tooltip": "Ticket ID. JIR-144"
+          "tooltip": "Ticket ID. JIR-144."
         },
         {
           "title": "Start At",
-          "description": "(Optional) Starting index for retrieving tickets whose comments you want to retrieve from Jira.By default, this is set to 0.",
+          "description": "(Optional) Specify the starting index for retrieving tickets from Jira. By default, this is set to 0.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "integer",
           "name": "startAt",
-          "tooltip": "Start index. Default is 0",
+          "tooltip": "Start index. Default is 0.",
           "value": "0"
         },
         {
           "title": "Max Results",
-          "description": "(Optional) Maximum number of tickets that this operation should return.By default, this is set to 50.",
+          "description": "(Optional) Specify the maximum number of tickets that this operation should return. By default, this is set to 50.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "integer",
           "name": "maxResults",
-          "tooltip": "Maximum number of tickets to be fetch. Default is 50",
+          "tooltip": "Maximum number of tickets to be fetch. Default is 50.",
           "value": "50"
         },
         {
           "title": "OrderBy",
-          "description": "Field by which you want to sort the tickets.Possible values are Ascending or Descending",
+          "description": "Select the order in which to sort the tickets. You can select from the following options: Ascending or Descending",
           "required": false,
           "editable": true,
           "visible": true,
@@ -1411,7 +1411,7 @@
             "Descending"
           ],
           "name": "orderBy",
-          "tooltip": "Accepts created field to sort comments by their created date."
+          "tooltip": "Field by which you want to sort the tickets.Possible values are Ascending or Descending."
         }
       ]
     },
@@ -1429,7 +1429,7 @@
       "parameters": [
         {
           "title": "Ticket ID",
-          "description": "Unique ID that is created for each ticket. Enter the ticket ID for the Jira ticket whose status you want to set.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "description": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-144, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1441,7 +1441,7 @@
         },
         {
           "title": "Status",
-          "description": "Status that you want to set for an existing Jira ticket.You can add statuses such as To Do, In Progress, or Done.",
+          "description": "Specify the status to set for an existing Jira ticket. You can add status such as To Do, In Progress, or Done.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1466,7 +1466,7 @@
       "parameters": [
         {
           "title": "Ticket ID",
-          "description": "Unique ID that is created for each ticket. Enter the ticket ID that you want to update on your configured Jira server.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "description": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-144, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1478,7 +1478,7 @@
         },
         {
           "title": "Project Key",
-          "description": "Unique project ID that represents the project that contains the Jira ticket that you want to update on your configured Jira server.",
+          "description": "Specify the unique project ID that represents the project under which to update the Jira ticket.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1490,7 +1490,7 @@
         },
         {
           "title": "Summary",
-          "description": "Summary or heading of the Jira ticket that you want to update on your configured Jira server.",
+          "description": "Specify the summary or heading of the ticket to update on your configured Jira server.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1501,7 +1501,7 @@
         },
         {
           "title": "Comment",
-          "description": "Comment that you want to add to the Jira ticket when you are updating the Jira ticket on your configured Jira server.",
+          "description": "Specify the comment to add to an existing Jira ticket.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1512,7 +1512,7 @@
         },
         {
           "title": "Priority",
-          "description": "Priority that you want to set for the Jira ticket that you want to update on your configured Jira server.You can add one of the following priorities: Highest, High, Medium, Low, or Lowest.",
+          "description": "(Optional) Specify the priority to update for the Jira ticket. You can specify one of the following priorities: Highest, High, Medium, Low, or Lowest.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1523,7 +1523,7 @@
         },
         {
           "title": "Description",
-          "description": "(Optional) Description that you want to add to the Jira ticket when you are updating the Jira ticket on your configured Jira server.",
+          "description": "(Optional) Specify the description to add to the Jira ticket when you are updating it on your configured Jira server.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -1534,7 +1534,7 @@
         },
         {
           "title": "Status",
-          "description": "(Optional) Status that you want to set to the Jira ticket when you are updating the Jira ticket on your configured Jira server.You can add statuses such as To Do, In Progress, or Done.",
+          "description": "Specify the status to set for an existing Jira ticket. You can add status such as To Do, In Progress, or Done.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -1545,13 +1545,13 @@
         },
         {
           "title": "Other Fields",
-          "description": "(Optional) Fields such as Reporter, Assignee, Components that you need to set while updating a ticket.For example: {\"components\":[{\"name\":\"JIRA\"}]}",
+          "description": "(Optional) Specify fields such as Reporter, Assignee, or Components to set while updating the ticket. For example: {\"reporter\": {\"name\":\"admin\"}, \"assignee\":{\"name\":\"admin\"}, \"components\":[{\"name\":\"Intranet\"}]}",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "json",
           "name": "other_fields",
-          "tooltip": "Other fields can be Components,Reporter,Assignee etc which needs to be updated",
+          "tooltip": "Other fields can be Components,Reporter,Assignee etc which needs to be updated.",
           "placeholder": "e.g {\"assignee\": {\"accountId\": \"5ac21efbb31cf552a3acb08c\"}}"
         }
       ]
@@ -1574,7 +1574,7 @@
       "parameters": [
         {
           "title": "Ticket ID",
-          "description": "Unique ID that is created for each ticket. Enter the ticket ID for the Jira ticket that you want to update in FortiSOAR.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "description": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-144, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1586,7 +1586,7 @@
         },
         {
           "title": "FortiSOAR Username",
-          "description": "Username configured for the FortiSOAR instance where you want to update the Jira ticket.",
+          "description": "Specify the username of the FortiSOAR instance where you want to update the Jira ticket.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1597,7 +1597,7 @@
         },
         {
           "title": "FortiSOAR Password",
-          "description": "Password configured for the FortiSOAR instance where you want to update the Jira ticket.",
+          "description": "Specify the password of the FortiSOAR instance where you want to update the Jira ticket.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1622,7 +1622,7 @@
       "parameters": [
         {
           "title": "Ticket ID",
-          "description": "Unique ID that is created for each ticket. Enter the ticket ID for the Jira ticket that you want to delete from your configured Jira server.You can enter the ticket ID directly, such as JIR-000 or use Dynamic Variables in this field and enter the ticket ID in the format {{vars.result.data.key}}.",
+          "description": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-144, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -1634,13 +1634,13 @@
         },
         {
           "title": "Delete Subtasks",
-          "description": "Select this option, i.e., set it to true to delete subtasks associated with the Jira ticket. If the ticket has subtasks then you must select this option so that the ticket can be successfully deleted from your configured Jira server.",
+          "description": "Select this option, i.e., set it to true to delete subtasks associated with the Jira ticket. If the ticket has subtasks then you must select this option to successfully delete the ticket from your configured Jira server.",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "checkbox",
           "name": "delete_subtask",
-          "tooltip": "If the ticket has subtasks you must set the parameter Delete Subtasks=true to delete the ticket",
+          "tooltip": "If the ticket has subtasks you must set the parameter Delete Subtasks=true to delete the ticket.",
           "value": ""
         }
       ]
