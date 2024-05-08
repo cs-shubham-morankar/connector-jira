@@ -1155,34 +1155,56 @@
         {
           "title": "Ticket ID",
           "description": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-144, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}.",
+          "required": true,
+          "editable": true,
+          "visible": true,
           "type": "text",
           "name": "issue_key",
-          "required": true,
-          "visible": true,
-          "editable": true,
+          "placeholder": "e.g. JIR-144",
           "value": "",
           "tooltip": "Ticket ID. e.g. JIR-144"
         },
         {
-          "title": "File Path",
-          "description": "Specify the file path of the file in the FortiSOAR Attachments module.",
-          "type": "text",
-          "name": "filePath",
-          "required": false,
-          "visible": true,
+          "title": "File or Attachment IRI",
+          "required": true,
           "editable": true,
-          "value": ""
-        },
-        {
-          "title": "File Name",
-          "description": "Specify the file name of the file in the FortiSOAR Attachments module.",
-          "type": "text",
-          "name": "fileName",
-          "required": false,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "type": "select",
+          "options": [
+            "Attachment ID",
+            "File IRI"
+          ],
+          "onchange": {
+            "Attachment ID": [
+              {
+                "title": "Attachment ID",
+                "description": "Specify the attachment ID of the file in the FortiSOAR Attachments module.",
+                "required": false,
+                "editable": true,
+                "visible": true,
+                "type": "text",
+                "name": "value",
+                "value": ""
+              }
+            ],
+            "File IRI": [
+              {
+                "title": "File IRI",
+                "description": "Specify the File IRI of the file in the FortiSOAR Attachments module.",
+                "required": false,
+                "editable": true,
+                "visible": true,
+                "type": "text",
+                "name": "value",
+                "value": ""
+              }
+            ]
+          },
+          "value": "Attachment ID",
+          "name": "path",
+          "description": "Specify the file to add as an attachment to the specified Jira ticket. You can select from the following options: Attachment ID: Specify the attachment ID of the file in the FortiSOAR Attachments module. File IRI: Specify the File IRI of the file in the FortiSOAR Attachments module."
         }
+
       ]
     },
     {

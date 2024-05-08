@@ -274,15 +274,12 @@ def _get_file_data(iri_type, iri):
 def submit_file(config, params, **kwargs):
     issue_key = params.get('issue_key')
     endpoint = "{0}{1}{2}".format(ENDPOINT, issue_key, '/attachments')
-    file_path = params.get('filePath')
-    file_name = params.get('fileName')
-    
+    iri_type = params.get('path')
+    iri = params.get('value')
+    file_name, file_path = _get_file_data(iri_type, iri)
     with open(file_path, 'rb') as attachment:
         file_data = attachment.read()
     files = {'file': (file_name, file_data)}
-    logger.error('FILE NAME = {}'.format(files))
-
-    headers = {'X-Atlassian-Token': 'no-check', 'content-type': 'application/x-www-form-urlencoded'}
     headers = {'X-Atlassian-Token': 'no-check'}
     submit_file = make_api_call(config, method='POST', endpoint=endpoint, files=files, headers=headers)
     if submit_file:
