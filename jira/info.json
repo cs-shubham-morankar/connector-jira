@@ -5,11 +5,11 @@
   "publisher": "Fortinet",
   "cs_approved": true,
   "cs_compatible": true,
-  "version": "1.2.0",
+  "version": "2.0.0",
   "category": "Ticket Creation",
   "icon_small_name": "jira_small.png",
   "icon_large_name": "jira_large.png",
-  "help_online": "https://docs.fortinet.com/document/fortisoar/1.2.0/jira/609/jira-v1-2-0",
+  "help_online": "",
   "configuration": {
     "fields": [
       {
@@ -31,7 +31,21 @@
         "name": "username"
       },
       {
-        "title": "API Token",
+        "title": "Authentication",
+        "description": "Select the authentication type Basic or Authentication Token from Jira server.",
+        "type": "select",
+        "name": "authentication",
+        "required": true,
+        "visible": true,
+        "editable": true,
+        "value": "Basic",
+        "options": [
+            "Basic",
+            "Personal Authentication Token"
+        ]
+      },
+      {
+        "title": "API Token/Bearer Token",
         "description": "API Token configured for your account to access the Jira server from where the connector gets notifications.",
         "required": true,
         "editable": true,
@@ -1190,6 +1204,7 @@
           "name": "path",
           "description": "Specify the file to add as an attachment to the specified Jira ticket. You can select from the following options: Attachment ID: Specify the attachment ID of the file in the FortiSOAR Attachments module. File IRI: Specify the File IRI of the file in the FortiSOAR Attachments module."
         }
+
       ]
     },
     {

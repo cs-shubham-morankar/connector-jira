@@ -3,7 +3,7 @@
   "data": [
     {
       "@type": "WorkflowCollection",
-      "name": "Sample - Jira - 1.2.0",
+      "name": "Sample - Jira - 2.0.0",
       "description": "Sample playbooks for \"Jira\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
       "visible": true,
       "image": null,
@@ -79,7 +79,7 @@
                   "title": "W3schools",
                   "issue_key": "FOR-4"
                 },
-                "version": "1.2.0",
+                "version": "2.0.0",
                 "connector": "jira",
                 "operation": "add_remote_link",
                 "operationTitle": "Add Remote Link",
@@ -142,7 +142,7 @@
                 "name": "Jira",
                 "config": "5e039627-92c8-4e14-a9fd-fba653921a9b",
                 "params": [],
-                "version": "1.2.0",
+                "version": "2.0.0",
                 "connector": "jira",
                 "operation": "list_projects",
                 "operationTitle": "List Projects",
@@ -246,7 +246,7 @@
                   "status": "In Progress",
                   "issue_key": "FOR-4"
                 },
-                "version": "1.2.0",
+                "version": "2.0.0",
                 "connector": "jira",
                 "operation": "set_status",
                 "operationTitle": "Set Status",
@@ -349,7 +349,7 @@
                 "params": {
                   "issue_key": "FOR-1"
                 },
-                "version": "1.2.0",
+                "version": "2.0.0",
                 "connector": "jira",
                 "operation": "get_ticket_details",
                 "operationTitle": "Get Ticket Details",
@@ -457,7 +457,7 @@
                   "issue_key": "FOR-3",
                   "delete_subtask": true
                 },
-                "version": "1.2.0",
+                "version": "2.0.0",
                 "connector": "jira",
                 "operation": "delete_ticket",
                 "operationTitle": "Delete Ticket",
@@ -566,7 +566,7 @@
                   "ticket_summary": "Test Summary",
                   "ticket_description": "Creation of an issue using project keys and issue type names using the REST API"
                 },
-                "version": "1.2.0",
+                "version": "2.0.0",
                 "connector": "jira",
                 "operation": "create_ticket",
                 "operationTitle": "Create Ticket",
@@ -667,7 +667,7 @@
                 "params": {
                   "accountId": "624bdcbe5f63fd0069b5a650"
                 },
-                "version": "1.2.0",
+                "version": "2.0.0",
                 "connector": "jira",
                 "operation": "get_user_details",
                 "operationTitle": "Get User Details",
@@ -776,7 +776,7 @@
                   "issue_key": "FOR-1",
                   "maxResults": 50
                 },
-                "version": "1.2.0",
+                "version": "2.0.0",
                 "connector": "jira",
                 "operation": "get_comments",
                 "operationTitle": "Get Comments",
@@ -896,7 +896,7 @@
                   "cyops_password": "demo",
                   "cyops_username": "test"
                 },
-                "version": "1.2.0",
+                "version": "2.0.0",
                 "connector": "jira",
                 "operation": "update_fortisoar",
                 "operationTitle": "Update FortiSOAR Record",
@@ -995,7 +995,7 @@
                   "comment": "This is a comment regarding the quality of the response.",
                   "issue_key": "FOR-1"
                 },
-                "version": "1.2.0",
+                "version": "2.0.0",
                 "connector": "jira",
                 "operation": "add_comment",
                 "operationTitle": "Add Comment",
@@ -1147,7 +1147,7 @@
                   "file_iri": "{{vars.input.records[0].file['@id']}}",
                   "issue_key": "DEMO-1"
                 },
-                "version": "1.2.0",
+                "version": "2.0.0",
                 "connector": "jira",
                 "operation": "submit_file",
                 "operationTitle": "Add Attachment",
@@ -1273,7 +1273,7 @@
                   "startAt": "0",
                   "maxResults": "50"
                 },
-                "version": "1.2.0",
+                "version": "2.0.0",
                 "connector": "jira",
                 "operation": "search_users",
                 "operationTitle": "Search Users",
@@ -1344,7 +1344,7 @@
                   "accountId": "624bdcbe5f63fd0069b5a650",
                   "issue_key": "TIC-1211"
                 },
-                "version": "1.2.0",
+                "version": "2.0.0",
                 "connector": "jira",
                 "operation": "assign_issue",
                 "operationTitle": "Assign Issue to User",
@@ -1492,7 +1492,7 @@
                   "project_key": "For",
                   "additional_search_parameter": ""
                 },
-                "version": "1.2.0",
+                "version": "2.0.0",
                 "connector": "jira",
                 "operation": "list_tickets",
                 "operationTitle": "List Tickets",
@@ -1566,7 +1566,7 @@
                   "project_key": "FOR",
                   "other_fields": "{\"components\":[{\"name\":\"JIRA\"}]}"
                 },
-                "version": "1.2.0",
+                "version": "2.0.0",
                 "connector": "jira",
                 "operation": "update_ticket",
                 "ignore_errors": false,

@@ -6,6 +6,7 @@
 
   
 import requests, json, os, re
+from base64 import b64encode
 from os.path import join
 from integrations.crudhub import make_request
 from requests_toolbelt.multipart.encoder import MultipartEncoder
@@ -44,27 +45,41 @@ def get_config(config):
             jira_username = config.get('username')
             jira_token = config.get('token')
             verify_ssl = config.get('verify_ssl')
-            return jira_server_url, jira_username, jira_token, verify_ssl
+            authentication = config.get('authentication')
+            return jira_server_url, jira_username, authentication, jira_token, verify_ssl
     except Exception as Err:
         logger.warn('Error occured while extracting conf :[{0}] '.format(Err))
         raise ConnectorError(Err)
 
 
 def make_api_call(config, method, endpoint=None, json=None, headers=None, files=None, params=None, data=None):
-    server, username, token, verify_ssl = get_config(config)
+    server, username, authentication, token, verify_ssl = get_config(config)
     if server.startswith('https://'):
         server = server.strip('/')
     else:
-        server = 'https://{0}'.format(server)
+        if not server.startswith('http://'):
+           server = 'https://{0}'.format(server)
     if not headers:
         headers = {'content-type': 'application/json', 'accept': 'application/json'}
     if endpoint:
         url = '{0}{1}'.format(server, endpoint)
     else:
         url = server
+
+    if authentication == 'Basic':
+      auth=(username,token)
+      to_encode = '{}:{}'.format(username, token)
+      encoded_auth = b64encode(bytes(to_encode, 'utf-8')).decode('utf-8')
+      headers['Authorization'] = 'Basic {}'.format(encoded_auth)
+    else:
+      if authentication == 'Personal Authentication Token':
+        auth=''
+        headers['Authorization']= 'Bearer {}'.format(token)
+      else:
+        raise ConnectorError('Authentication methode not implemented: {}', authentication)
     logger.info('Request URL {}'.format(url))
     try:
-        response = requests.request(method=method, url=url, auth=(username, token), headers=headers, files=files,
+        response = requests.request(method=method, url=url, auth=auth, headers=headers, files=files,
                                     data=json, params=params, verify=verify_ssl)
         if response.ok:
             return response
@@ -83,7 +98,7 @@ def make_api_call(config, method, endpoint=None, json=None, headers=None, files=
         raise ConnectorError('{}'.format('SSL certificate validation failed'))
     except requests.exceptions.ConnectionError as e:
         logger.exception('{}'.format(e))
-        raise ConnectorError('{}'.format('The request timed out while trying to connect to the remote server'))
+        raise ConnectorError('{} : {}'.format('The request timed out while trying to connect to the remote server', url))
     except Exception as e:
         logger.exception('{}'.format(e))
         raise ConnectorError('{}'.format(e))
@@ -249,7 +264,7 @@ def _get_file_data(iri_type, iri):
         if not file_name:
                 file_name = file_download_response['filename']
         file_path = join('/tmp', file_download_response['cyops_file_path'])
-        logger.info('file id = %s, file_name = %s' % (file_iri, file_name))
+        logger.error('file id = %s, file_name = %s' % (file_iri, file_name))
         return file_name, file_path
     except Exception as err:
         logger.exception(str(err))
