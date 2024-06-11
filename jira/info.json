@@ -7,6 +7,7 @@
   "cs_compatible": true,
   "version": "2.0.0",
   "category": "Ticket Creation",
+  "contributors": "Malaya",
   "icon_small_name": "jira_small.png",
   "icon_large_name": "jira_large.png",
   "help_online": "",
