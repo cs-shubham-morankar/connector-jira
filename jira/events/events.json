@@ -1,0 +1,208 @@
+[
+  {
+    "event_id": "jira.get_tickets_created",
+    "name": "When Tickets is Created",
+    "description": "Run playbook when an tickets is created",
+    "type": [
+      "PUSH"
+    ],
+    "connector_action": "list_tickets",
+    "connector_action_inputs": {
+      "jql_query": "project = JIRA_PROJECT_ID and created > -1d",
+      "startAt": 0,
+      "maxResults": 50,
+      "fields": ""
+    },
+    "trigger_condition": {
+      "sort": [],
+      "limit": 30,
+      "logic": "AND",
+      "filters": []
+    },
+    "sample_data": [
+      [
+        {
+          "id": "",
+          "key": "",
+          "self": "",
+          "expand": "",
+          "fields": {
+            "votes": {
+              "self": "",
+              "votes": "",
+              "hasVoted": ""
+            },
+            "labels": [],
+            "status": {
+              "id": "",
+              "name": "",
+              "self": "",
+              "iconUrl": "",
+              "description": "",
+              "statusCategory": {
+                "id": "",
+                "key": "",
+                "name": "",
+                "self": "",
+                "colorName": ""
+              }
+            },
+            "created": "",
+            "creator": {
+              "self": "",
+              "active": "",
+              "timeZone": "",
+              "accountId": "",
+              "avatarUrls": {
+                "16x16": "",
+                "24x24": "",
+                "32x32": "",
+                "48x48": ""
+              },
+              "accountType": "",
+              "displayName": "",
+              "emailAddress": ""
+            },
+            "duedate": "",
+            "project": {
+              "id": "",
+              "key": "",
+              "name": "",
+              "self": "",
+              "avatarUrls": {
+                "16x16": "",
+                "24x24": "",
+                "32x32": "",
+                "48x48": ""
+              },
+              "simplified": "",
+              "projectTypeKey": ""
+            },
+            "summary": "",
+            "updated": "",
+            "watches": {
+              "self": "",
+              "isWatching": "",
+              "watchCount": ""
+            },
+            "assignee": {
+              "self": "",
+              "active": "",
+              "timeZone": "",
+              "accountId": "",
+              "avatarUrls": {
+                "16x16": "",
+                "24x24": "",
+                "32x32": "",
+                "48x48": ""
+              },
+              "accountType": "",
+              "displayName": "",
+              "emailAddress": ""
+            },
+            "priority": {
+              "id": "",
+              "name": "",
+              "self": "",
+              "iconUrl": ""
+            },
+            "progress": {
+              "total": "",
+              "progress": ""
+            },
+            "reporter": {
+              "self": "",
+              "active": "",
+              "timeZone": "",
+              "accountId": "",
+              "avatarUrls": {
+                "16x16": "",
+                "24x24": "",
+                "32x32": "",
+                "48x48": ""
+              },
+              "accountType": "",
+              "displayName": "",
+              "emailAddress": ""
+            },
+            "security": "",
+            "subtasks": [],
+            "versions": [],
+            "issuetype": {
+              "id": "",
+              "name": "",
+              "self": "",
+              "iconUrl": "",
+              "subtask": "",
+              "avatarId": "",
+              "entityId": "",
+              "description": "",
+              "hierarchyLevel": ""
+            },
+            "timespent": "",
+            "workratio": "",
+            "components": [],
+            "issuelinks": [],
+            "lastViewed": "",
+            "resolution": "",
+            "description": "",
+            "environment": "",
+            "fixVersions": [],
+            "timeestimate": "",
+            "resolutiondate": "",
+            "aggregateprogress": {
+              "total": "",
+              "progress": ""
+            },
+            "customfield_10001": "",
+            "customfield_10002": [],
+            "customfield_10003": "",
+            "customfield_10004": "",
+            "customfield_10005": "",
+            "customfield_10006": "",
+            "customfield_10007": "",
+            "customfield_10008": "",
+            "customfield_10009": "",
+            "customfield_10010": "",
+            "customfield_10014": "",
+            "customfield_10015": "",
+            "customfield_10016": "",
+            "customfield_10017": "",
+            "customfield_10018": {
+              "showField": "",
+              "nonEditableReason": {
+                "reason": "",
+                "message": ""
+              },
+              "hasEpicLinkFieldDependency": ""
+            },
+            "customfield_10019": "",
+            "customfield_10020": "",
+            "customfield_10021": "",
+            "customfield_10022": "",
+            "customfield_10023": "",
+            "customfield_10024": "",
+            "customfield_10025": "",
+            "customfield_10026": "",
+            "customfield_10027": "",
+            "customfield_10028": "",
+            "customfield_10029": "",
+            "customfield_10031": "",
+            "customfield_10032": "",
+            "customfield_10033": "",
+            "customfield_10034": "",
+            "customfield_10035": "",
+            "aggregatetimespent": "",
+            "timeoriginalestimate": "",
+            "aggregatetimeestimate": "",
+            "statuscategorychangedate": "",
+            "aggregatetimeoriginalestimate": ""
+          }
+        }
+      ]
+    ],
+    "connector_mapping": {
+      "response": "{{data.issues}}"
+    }
+  }
+]
