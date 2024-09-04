@@ -1,8 +1,8 @@
 [
   {
     "event_id": "jira.get_tickets_created",
-    "name": "When Tickets is Created",
-    "description": "Run playbook when an tickets is created",
+    "name": "When JIRA Ticket is Created",
+    "description": "Run playbook when a JIRA ticket is created.",
     "type": [
       "PUSH"
     ],
