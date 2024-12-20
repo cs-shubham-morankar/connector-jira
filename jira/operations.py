@@ -5,7 +5,6 @@ Copyright (c) 2024 Fortinet Inc
 Copyright end
 """
 
-  
 import requests, json, os, re
 from base64 import b64encode
 from os.path import join
@@ -19,6 +18,7 @@ logger = get_logger('jira')
 
 ENDPOINT = '/rest/api/2/issue/'
 SEARCH_ENDPOINT = '/rest/api/2/search'
+SEARCH_JQL_ENDPOINT = '/rest/api/3/search/jql'
 
 reserved_words = ["abort", "access", "add", "after", "alias", "all", "alter", "and", "any", "as", "asc", "audit", "avg",
                   "before", "begin", "between", "boolean", "break", "by", "byte", "catch", "cf", "char", "character",
@@ -59,7 +59,7 @@ def make_api_call(config, method, endpoint=None, json=None, headers=None, files=
         server = server.strip('/')
     else:
         if not server.startswith('http://'):
-           server = 'https://{0}'.format(server)
+            server = 'https://{0}'.format(server)
     if not headers:
         headers = {'content-type': 'application/json', 'accept': 'application/json'}
     if endpoint:
@@ -68,16 +68,16 @@ def make_api_call(config, method, endpoint=None, json=None, headers=None, files=
         url = server
 
     if authentication == 'Basic':
-      auth=(username,token)
-      to_encode = '{}:{}'.format(username, token)
-      encoded_auth = b64encode(bytes(to_encode, 'utf-8')).decode('utf-8')
-      headers['Authorization'] = 'Basic {}'.format(encoded_auth)
+        auth = (username, token)
+        to_encode = '{}:{}'.format(username, token)
+        encoded_auth = b64encode(bytes(to_encode, 'utf-8')).decode('utf-8')
+        headers['Authorization'] = 'Basic {}'.format(encoded_auth)
     else:
-      if authentication == 'Personal Authentication Token':
-        auth=''
-        headers['Authorization']= 'Bearer {}'.format(token)
-      else:
-        raise ConnectorError('Authentication methode not implemented: {}', authentication)
+        if authentication == 'Personal Authentication Token':
+            auth = ''
+            headers['Authorization'] = 'Bearer {}'.format(token)
+        else:
+            raise ConnectorError('Authentication methode not implemented: {}', authentication)
     logger.info('Request URL {}'.format(url))
     try:
         response = requests.request(method=method, url=url, auth=auth, headers=headers, files=files,
@@ -99,7 +99,8 @@ def make_api_call(config, method, endpoint=None, json=None, headers=None, files=
         raise ConnectorError('{}'.format('SSL certificate validation failed'))
     except requests.exceptions.ConnectionError as e:
         logger.exception('{}'.format(e))
-        raise ConnectorError('{} : {}'.format('The request timed out while trying to connect to the remote server', url))
+        raise ConnectorError(
+            '{} : {}'.format('The request timed out while trying to connect to the remote server', url))
     except Exception as e:
         logger.exception('{}'.format(e))
         raise ConnectorError('{}'.format(e))
@@ -112,8 +113,10 @@ def check_health(config):
         if len(projects) > 0:
             return True
         else:
-            logger.exception('Error occurred while connecting to server, check credentials and make sure you have at least one JIRA project')
-            raise ConnectorError('Error occurred while connecting to server, check credentials and make sure you have at least one JIRA project')
+            logger.exception(
+                'Error occurred while connecting to server, check credentials and make sure you have at least one JIRA project')
+            raise ConnectorError(
+                'Error occurred while connecting to server, check credentials and make sure you have at least one JIRA project')
     except Exception as Err:
         logger.exception('Error occurred while connecting to server: {}'.format(str(Err)))
         raise ConnectorError('Error occurred while connecting to server: {}'.format(Err))
@@ -158,8 +161,8 @@ def create_ticket(config, params, **kwargs):
             body['fields'].update(other_fields)
         if params.get('parent'):
             parent_body = {
-                             "parent":{"key": params.get('parent')}
-                          }
+                "parent": {"key": params.get('parent')}
+            }
             body['fields'].update(parent_body)
         payload1 = check_payload(body)
         response = make_api_call(config, method='POST', endpoint=ENDPOINT, json=json.dumps(payload1))
@@ -263,7 +266,7 @@ def _get_file_data(iri_type, iri):
             file_iri = iri
         file_download_response = download_file_from_cyops(file_iri)
         if not file_name:
-                file_name = file_download_response['filename']
+            file_name = file_download_response['filename']
         file_path = join('/tmp', file_download_response['cyops_file_path'])
         logger.error('file id = %s, file_name = %s' % (file_iri, file_name))
         return file_name, file_path
@@ -406,9 +409,10 @@ def list_tickets(config, params, **kwargs):
             if not isinstance(fields, list):
                 fields = fields.split(",")
         endpoint = "{0}".format(SEARCH_ENDPOINT)
-        project_key = re.search(r"project\s?=\s?(\w+)",jql_query)
+        project_key = re.search(r"project\s?=\s?(\w+)", jql_query)
         if project_key is None:
-            raise ConnectorError('Project ID is not defined properly in the JQL query, make sure to use the syntax: project = YOUR_PROJECT_ID')
+            raise ConnectorError(
+                'Project ID is not defined properly in the JQL query, make sure to use the syntax: project = YOUR_PROJECT_ID')
         project_key = project_key.group(1)
 
         if project_key.lower() in reserved_words:
@@ -418,6 +422,51 @@ def list_tickets(config, params, **kwargs):
             "jql": jql_query,
             "startAt": startAt,
             "maxResults": maxResults,
+            "fields": fields
+        }
+        payload = {k: v for k, v in body.items() if v is not None and v != ''}
+        response = make_api_call(config, method='POST', endpoint=endpoint, json=json.dumps(payload))
+        logger.info('Returning Ticket lists response : [{0}]'.format(response))
+        if response.ok:
+            return response.json()
+        else:
+            raise ConnectorError('Error [{0}] occurred while fetching jira ticket status with status [{1}] code : '.
+                                 format(response.reason, response.status_code))
+    except Exception as Err:
+        raise ConnectorError(Err)
+
+
+def fetch_tickets(config, params, **kwargs):
+    try:
+        jql_query = params.get('jql_query')
+        maxResults = params.get('maxResults')
+        nextPageToken = params.get('nextPageToken')
+        fields = params.get('fields')
+        if not fields:
+            fields = []
+        else:
+            if not isinstance(fields, list):
+                fields = fields.split(",")
+        endpoint = "{0}".format(SEARCH_JQL_ENDPOINT)
+        project_key = re.search(r"project\s?=\s?(\w+)", jql_query)
+        if project_key is None:
+            raise ConnectorError(
+                'Project ID is not defined properly in the JQL query, make sure to use the syntax: project = YOUR_PROJECT_ID')
+        project_key = project_key.group(1)
+
+        if project_key.lower() in reserved_words:
+            jql_query = jql_query.replace(project_key, '"' + project_key + '"')
+        start_datetime = params.get('start_time')
+        if start_datetime:
+            start_date = start_datetime.split("T")
+            start_time = start_date[1].split(".")
+            start_datetime = start_date[0] + " " + start_time[0][:-3]
+            jql_query = jql_query + " and created >= '{0}' or updated >= '{1}'".format(start_datetime, start_datetime)
+        logger.info('Running JQL query:{}'.format(jql_query))
+        body = {
+            "jql": jql_query,
+            "maxResults": maxResults,
+            "nextPageToken": nextPageToken,
             "fields": fields
         }
         payload = {k: v for k, v in body.items() if v is not None and v != ''}
@@ -454,8 +503,8 @@ def search_users(config, params, **kwargs):
     try:
         endpoint = '/rest/api/3/users/search'
         url_params = {
-            'startAt': params.get('startAt',0),
-            'maxResults': params.get('maxResults',50)
+            'startAt': params.get('startAt', 0),
+            'maxResults': params.get('maxResults', 50)
         }
         response = make_api_call(config, method='GET', endpoint=endpoint, params=url_params)
         if response.ok:
@@ -600,6 +649,7 @@ operations = {
     'get_ticket_details': get_ticket_details,
     'list_projects': list_projects,
     'list_tickets': list_tickets,
+    'fetch_tickets': fetch_tickets,
     'validate_jql_query': validate_jql_query,
     'search_users': search_users,
     'get_user_details': get_user_details,

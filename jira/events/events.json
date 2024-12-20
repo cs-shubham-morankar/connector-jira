@@ -1,16 +1,17 @@
 [
   {
     "event_id": "jira.get_tickets_created",
-    "name": "When JIRA Ticket is Created",
-    "description": "Run playbook when a JIRA ticket is created.",
+    "name": "When an Jira ticket is created",
+    "description": "Run the playbook when a Jira ticket is created.",
     "type": [
       "PUSH"
     ],
-    "connector_action": "list_tickets",
+    "connector_action": "fetch_tickets",
     "connector_action_inputs": {
-      "jql_query": "project = JIRA_PROJECT_ID and created > -1d",
-      "startAt": 0,
-      "maxResults": 50,
+      "jql_query": "project = JIRA_PROJECT_ID",
+      "start_time": "",
+      "maxResults": "",
+      "nextPageToken": "",
       "fields": ""
     },
     "trigger_condition": {
@@ -202,7 +203,10 @@
       ]
     ],
     "connector_mapping": {
-      "response": "{{data.issues}}"
+      "response": "{{data.issues}}",
+      "datetime": {
+        "from": "start_time"
+      }
     }
   }
 ]
