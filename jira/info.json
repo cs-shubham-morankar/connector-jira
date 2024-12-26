@@ -172,8 +172,24 @@
         "key": "",
         "expand": "",
         "fields": {
-          "customfield_10128": "",
-          "customfield_10101": "",
+          "statuscategorychangedate": "",
+          "customfield_10030": "",
+          "customfield_10031": "",
+          "assignee": {
+            "self": "",
+            "accountId": "",
+            "emailAddress": "",
+            "avatarUrls": {
+              "48x48": "",
+              "24x24": "",
+              "16x16": "",
+              "32x32": ""
+            },
+            "displayName": "",
+            "active": "",
+            "timeZone": "",
+            "accountType": ""
+          },
           "progress": {
             "progress": "",
             "total": ""
@@ -185,19 +201,26 @@
             "watchCount": ""
           },
           "security": "",
-          "customfield_10115": [],
-          "customfield_10141": "",
-          "customfield_10112": "",
-          "customfield_10105": "",
+          "customfield_10032": "",
+          "customfield_10035": "",
+          "customfield_10036": "",
+          "customfield_10037": "",
           "aggregatetimespent": "",
-          "customfield_10122": "",
+          "customfield_10027": "",
+          "customfield_10028": "",
+          "customfield_10029": "",
           "timeestimate": "",
           "labels": [],
           "timeoriginalestimate": "",
+          "issuerestriction": {
+            "issuerestrictions": {},
+            "shouldDisplay": ""
+          },
           "components": [],
           "comment": {
             "comments": [
               {
+                "jsdPublic": "",
                 "body": "",
                 "id": "",
                 "updated": "",
@@ -217,7 +240,8 @@
                   "displayName": "",
                   "name": "",
                   "key": "",
-                  "accountId": ""
+                  "accountId": "",
+                  "accountType": ""
                 },
                 "updateAuthor": {
                   "avatarUrls": {
@@ -233,191 +257,44 @@
                   "displayName": "",
                   "name": "",
                   "key": "",
-                  "accountId": ""
-                }
-              },
-              {
-                "body": "",
-                "id": "",
-                "updated": "",
-                "self": "",
-                "created": "",
-                "author": {
-                  "avatarUrls": {
-                    "48x48": "",
-                    "24x24": "",
-                    "32x32": "",
-                    "16x16": ""
-                  },
-                  "timeZone": "",
-                  "emailAddress": "",
-                  "self": "",
-                  "active": "",
-                  "displayName": "",
-                  "name": "",
-                  "key": "",
-                  "accountId": ""
-                },
-                "updateAuthor": {
-                  "avatarUrls": {
-                    "48x48": "",
-                    "24x24": "",
-                    "32x32": "",
-                    "16x16": ""
-                  },
-                  "timeZone": "",
-                  "emailAddress": "",
-                  "self": "",
-                  "active": "",
-                  "displayName": "",
-                  "name": "",
-                  "key": "",
-                  "accountId": ""
-                }
-              },
-              {
-                "body": "",
-                "id": "",
-                "updated": "",
-                "self": "",
-                "created": "",
-                "author": {
-                  "avatarUrls": {
-                    "48x48": "",
-                    "24x24": "",
-                    "32x32": "",
-                    "16x16": ""
-                  },
-                  "timeZone": "",
-                  "emailAddress": "",
-                  "self": "",
-                  "active": "",
-                  "displayName": "",
-                  "name": "",
-                  "key": "",
-                  "accountId": ""
-                },
-                "updateAuthor": {
-                  "avatarUrls": {
-                    "48x48": "",
-                    "24x24": "",
-                    "32x32": "",
-                    "16x16": ""
-                  },
-                  "timeZone": "",
-                  "emailAddress": "",
-                  "self": "",
-                  "active": "",
-                  "displayName": "",
-                  "name": "",
-                  "key": "",
-                  "accountId": ""
-                }
-              },
-              {
-                "body": "",
-                "id": "",
-                "updated": "",
-                "self": "",
-                "created": "",
-                "author": {
-                  "avatarUrls": {
-                    "48x48": "",
-                    "24x24": "",
-                    "32x32": "",
-                    "16x16": ""
-                  },
-                  "timeZone": "",
-                  "emailAddress": "",
-                  "self": "",
-                  "active": "",
-                  "displayName": "",
-                  "name": "",
-                  "key": "",
-                  "accountId": ""
-                },
-                "updateAuthor": {
-                  "avatarUrls": {
-                    "48x48": "",
-                    "24x24": "",
-                    "32x32": "",
-                    "16x16": ""
-                  },
-                  "timeZone": "",
-                  "emailAddress": "",
-                  "self": "",
-                  "active": "",
-                  "displayName": "",
-                  "name": "",
-                  "key": "",
-                  "accountId": ""
+                  "accountId": "",
+                  "accountType": ""
                 }
               }
             ],
+            "self": "",
             "startAt": "",
             "total": "",
             "maxResults": ""
           },
-          "customfield_10131": "",
-          "customfield_10130": "",
-          "customfield_10120": "",
-          "customfield_10116": "",
+          "customfield_10020": "",
+          "customfield_10021": "",
           "versions": [],
-          "customfield_10110": "",
+          "customfield_10022": "",
           "attachment": [],
           "timespent": "",
-          "customfield_10102": "",
-          "customfield_10108": "",
-          "customfield_10000": "{}",
+          "customfield_10023": "",
+          "customfield_10026": "",
+          "customfield_10016": "",
           "resolution": "",
           "duedate": "",
           "aggregateprogress": {
             "progress": "",
             "total": ""
           },
-          "customfield_10106": "",
-          "customfield_10118": "",
-          "customfield_10125": "",
-          "customfield_10138": {
-            "_links": {
-              "self": ""
-            },
-            "ongoingCycle": {
-              "breached": "",
-              "goalDuration": {
-                "friendly": "",
-                "millis": ""
-              },
-              "withinCalendarHours": "",
-              "paused": "",
-              "startTime": {
-                "friendly": "",
-                "iso8601": "",
-                "epochMillis": "",
-                "jira": ""
-              },
-              "elapsedTime": {
-                "friendly": "",
-                "millis": ""
-              },
-              "remainingTime": {
-                "friendly": "",
-                "millis": ""
-              },
-              "breachTime": {
-                "friendly": "",
-                "iso8601": "",
-                "epochMillis": "",
-                "jira": ""
-              }
-            },
-            "name": "",
-            "id": "",
-            "completedCycles": []
+          "customfield_10017": "",
+          "customfield_10018": {
+            "hasEpicLinkFieldDependency": "",
+            "showField": "",
+            "nonEditableReason": {
+              "reason": "",
+              "message": ""
+            }
           },
-          "assignee": "",
-          "customfield_10103": "",
-          "customfield_10134": "",
+          "customfield_10019": "",
+          "customfield_10050": "",
+          "customfield_10051": "",
+          "customfield_10052": "",
           "aggregatetimeestimate": "",
           "reporter": {
             "avatarUrls": {
@@ -433,10 +310,12 @@
             "displayName": "",
             "name": "",
             "key": "",
-            "accountId": ""
+            "accountId": "",
+            "accountType": ""
           },
           "aggregatetimeoriginalestimate": "",
           "project": {
+            "simplified": "",
             "avatarUrls": {
               "48x48": "",
               "24x24": "",
@@ -449,57 +328,23 @@
             "name": "",
             "key": ""
           },
-          "customfield_10139": {
-            "_links": {
-              "self": ""
-            },
-            "name": "",
-            "id": "",
-            "completedCycles": [
-              {
-                "breached": "",
-                "goalDuration": {
-                  "friendly": "",
-                  "millis": ""
-                },
-                "startTime": {
-                  "friendly": "",
-                  "iso8601": "",
-                  "epochMillis": "",
-                  "jira": ""
-                },
-                "elapsedTime": {
-                  "friendly": "",
-                  "millis": ""
-                },
-                "remainingTime": {
-                  "friendly": "",
-                  "millis": ""
-                },
-                "stopTime": {
-                  "friendly": "",
-                  "iso8601": "",
-                  "epochMillis": "",
-                  "jira": ""
-                }
-              }
-            ]
-          },
-          "customfield_10135": "",
+          "customfield_10053": "",
+          "customfield_10054": "",
           "fixVersions": [],
           "timetracking": {},
-          "customfield_10127": "",
-          "customfield_10001": [],
-          "customfield_10111": "",
-          "customfield_10126": "",
+          "customfield_10010": "",
+          "customfield_10014": "",
+          "customfield_10015": "",
           "customfield_10005": "",
+          "customfield_10049": [],
           "votes": {
             "self": "",
             "hasVoted": "",
             "votes": ""
           },
-          "customfield_10113": "",
+          "customfield_10006": "",
           "creator": {
+            "accountType": "",
             "avatarUrls": {
               "48x48": "",
               "24x24": "",
@@ -522,7 +367,9 @@
             "self": "",
             "subtask": "",
             "avatarId": "",
-            "name": ""
+            "name": "",
+            "entityId": "",
+            "hierarchyLevel": ""
           },
           "created": "",
           "priority": {
@@ -531,28 +378,29 @@
             "name": "",
             "id": ""
           },
-          "customfield_10133": "",
-          "customfield_10119": [],
+          "customfield_10007": "",
+          "customfield_10008": "",
           "lastViewed": "",
           "subtasks": [],
-          "customfield_10200": "",
-          "customfield_10104": "",
-          "customfield_10121": "",
-          "customfield_10132": "",
-          "customfield_10123": "",
+          "customfield_10009": "",
+          "customfield_10040": [],
+          "customfield_10041": "",
+          "customfield_10042": "",
+          "customfield_10043": "",
           "resolutiondate": "",
-          "customfield_10140": "",
-          "customfield_10117": "",
-          "customfield_10136": "",
+          "customfield_10044": "",
+          "customfield_10045": "",
+          "customfield_10001": "",
+          "customfield_10046": "",
+          "customfield_10002": [],
           "summary": "",
-          "customfield_10124": "",
+          "customfield_10047": "",
           "issuelinks": [],
           "description": "",
           "workratio": "",
-          "customfield_10137": "",
+          "customfield_10048": "",
           "updated": "",
-          "customfield_10114": "",
-          "customfield_10129": "",
+          "customfield_10003": "",
           "status": {
             "description": "",
             "iconUrl": "",
@@ -567,15 +415,15 @@
             },
             "name": ""
           },
-          "customfield_10100": "",
+          "customfield_10004": "",
           "worklog": {
             "total": "",
             "maxResults": "",
             "worklogs": [],
             "startAt": ""
           },
-          "customfield_10109": "",
-          "customfield_10107": ""
+          "customfield_10038": "",
+          "customfield_10039": ""
         },
         "id": "",
         "self": ""
@@ -619,7 +467,9 @@
           "simplified": "",
           "style": "",
           "isPrivate": "",
-          "properties": {}
+          "properties": {},
+          "entityId": "",
+          "uuid": ""
         }
       ],
       "enabled": true,
@@ -643,22 +493,27 @@
             "self": "",
             "key": "",
             "fields": {
+              "statuscategorychangedate": "",
               "issuetype": {
                 "self": "",
                 "id": "",
-                "description": ".",
+                "description": "",
                 "iconUrl": "",
                 "name": "",
                 "subtask": "",
-                "avatarId": ""
+                "avatarId": "",
+                "entityId": "",
+                "hierarchyLevel": ""
               },
               "timespent": "",
+              "customfield_10030": "",
               "project": {
                 "self": "",
                 "id": "",
                 "key": "",
                 "name": "",
                 "projectTypeKey": "",
+                "simplified": "",
                 "avatarUrls": {
                   "48x48": "",
                   "24x24": "",
@@ -666,20 +521,17 @@
                   "32x32": ""
                 }
               },
-              "customfield_10110": "",
+              "customfield_10031": "",
+              "customfield_10032": "",
               "fixVersions": [],
-              "customfield_10111": "",
               "aggregatetimespent": "",
-              "customfield_10112": "",
               "resolution": "",
-              "customfield_10113": "",
-              "customfield_10114": "",
-              "customfield_10104": "",
-              "customfield_10105": "",
-              "customfield_10106": "",
-              "customfield_10107": "",
-              "customfield_10108": "",
-              "customfield_10109": "",
+              "customfield_10035": "",
+              "customfield_10036": "",
+              "customfield_10037": "",
+              "customfield_10027": "",
+              "customfield_10028": "",
+              "customfield_10029": "",
               "resolutiondate": "",
               "workratio": "",
               "lastViewed": "",
@@ -689,99 +541,50 @@
                 "isWatching": ""
               },
               "created": "",
-              "customfield_10140": "",
-              "customfield_10141": "",
+              "customfield_10020": "",
+              "customfield_10021": "",
+              "customfield_10022": "",
               "priority": {
                 "self": "",
                 "iconUrl": "",
                 "name": "",
                 "id": ""
               },
-              "customfield_10100": "",
-              "customfield_10101": "",
-              "customfield_10102": "",
+              "customfield_10023": "",
+              "customfield_10024": "",
+              "customfield_10025": "",
+              "customfield_10026": "",
               "labels": [],
-              "customfield_10103": "",
-              "customfield_10137": "",
-              "customfield_10138": {
-                "id": "",
-                "name": "",
-                "_links": {
-                  "self": ""
-                },
-                "completedCycles": [],
-                "ongoingCycle": {
-                  "startTime": {
-                    "iso8601": "",
-                    "jira": "",
-                    "friendly": "",
-                    "epochMillis": ""
-                  },
-                  "breachTime": {
-                    "iso8601": "",
-                    "jira": "",
-                    "friendly": "",
-                    "epochMillis": ""
-                  },
-                  "breached": "",
-                  "paused": "",
-                  "withinCalendarHours": "",
-                  "goalDuration": {
-                    "millis": "",
-                    "friendly": ""
-                  },
-                  "elapsedTime": {
-                    "millis": "",
-                    "friendly": ""
-                  },
-                  "remainingTime": {
-                    "millis": "",
-                    "friendly": ""
-                  }
+              "customfield_10016": "",
+              "customfield_10017": "",
+              "customfield_10018": {
+                "hasEpicLinkFieldDependency": "",
+                "showField": "",
+                "nonEditableReason": {
+                  "reason": "",
+                  "message": ""
                 }
               },
-              "customfield_10139": {
-                "id": "",
-                "name": "",
-                "_links": {
-                  "self": ""
-                },
-                "completedCycles": [],
-                "ongoingCycle": {
-                  "startTime": {
-                    "iso8601": "",
-                    "jira": "",
-                    "friendly": "",
-                    "epochMillis": ""
-                  },
-                  "breachTime": {
-                    "iso8601": "",
-                    "jira": "",
-                    "friendly": "",
-                    "epochMillis": ""
-                  },
-                  "breached": "",
-                  "paused": "",
-                  "withinCalendarHours": "",
-                  "goalDuration": {
-                    "millis": "",
-                    "friendly": ""
-                  },
-                  "elapsedTime": {
-                    "millis": "",
-                    "friendly": ""
-                  },
-                  "remainingTime": {
-                    "millis": "",
-                    "friendly": ""
-                  }
-                }
-              },
+              "customfield_10019": "",
               "timeestimate": "",
               "aggregatetimeoriginalestimate": "",
               "versions": [],
               "issuelinks": [],
-              "assignee": "",
+              "assignee": {
+                "self": "",
+                "accountId": "",
+                "emailAddress": "",
+                "avatarUrls": {
+                  "48x48": "",
+                  "24x24": "",
+                  "16x16": "",
+                  "32x32": ""
+                },
+                "displayName": "",
+                "active": "",
+                "timeZone": "",
+                "accountType": ""
+              },
               "updated": "",
               "status": {
                 "self": "",
@@ -798,27 +601,27 @@
                 }
               },
               "components": [],
+              "customfield_10050": "",
               "timeoriginalestimate": "",
-              "customfield_10130": "",
+              "customfield_10051": "",
+              "customfield_10052": "",
+              "customfield_10053": "",
               "description": "",
-              "customfield_10131": "",
-              "customfield_10132": "",
-              "customfield_10133": "",
-              "customfield_10134": "",
-              "customfield_10135": "",
-              "customfield_10136": "",
-              "customfield_10126": "",
+              "customfield_10010": "",
+              "customfield_10054": "",
+              "customfield_10014": "",
+              "customfield_10015": "",
               "customfield_10005": "",
-              "customfield_10127": "",
+              "customfield_10049": [],
+              "customfield_10006": "",
               "security": "",
-              "customfield_10128": "",
-              "customfield_10129": "",
+              "customfield_10007": "",
+              "customfield_10008": "",
+              "customfield_10009": "",
               "aggregatetimeestimate": "",
               "summary": "",
               "creator": {
                 "self": "",
-                "name": "",
-                "key": "",
                 "accountId": "",
                 "emailAddress": "",
                 "avatarUrls": {
@@ -829,14 +632,16 @@
                 },
                 "displayName": "",
                 "active": "",
-                "timeZone": ""
+                "timeZone": "",
+                "accountType": ""
               },
               "subtasks": [],
-              "customfield_10120": "",
+              "customfield_10040": [],
+              "customfield_10041": "",
+              "customfield_10042": "",
+              "customfield_10043": "",
               "reporter": {
                 "self": "",
-                "name": "",
-                "key": "",
                 "accountId": "",
                 "emailAddress": "",
                 "avatarUrls": {
@@ -847,26 +652,25 @@
                 },
                 "displayName": "",
                 "active": "",
-                "timeZone": ""
+                "timeZone": "",
+                "accountType": ""
               },
-              "customfield_10000": "{}",
+              "customfield_10044": "",
               "aggregateprogress": {
                 "progress": "",
                 "total": ""
               },
-              "customfield_10121": "",
-              "customfield_10001": [],
-              "customfield_10122": "",
-              "customfield_10123": "",
-              "customfield_10200": "",
-              "customfield_10124": "",
-              "customfield_10125": "",
-              "customfield_10115": [],
-              "customfield_10116": "",
-              "customfield_10117": "",
+              "customfield_10001": "",
+              "customfield_10045": "",
+              "customfield_10046": "",
+              "customfield_10002": [],
+              "customfield_10047": "",
+              "customfield_10003": "",
+              "customfield_10004": "",
+              "customfield_10048": "",
+              "customfield_10038": "",
+              "customfield_10039": "",
               "environment": "",
-              "customfield_10118": "",
-              "customfield_10119": [],
               "duedate": "",
               "progress": {
                 "progress": "",
@@ -1003,7 +807,21 @@
                 "isWatching": "",
                 "watchCount": ""
               },
-              "assignee": "",
+              "assignee": {
+                "self": "",
+                "accountId": "",
+                "emailAddress": "",
+                "avatarUrls": {
+                  "48x48": "",
+                  "24x24": "",
+                  "16x16": "",
+                  "32x32": ""
+                },
+                "displayName": "",
+                "active": "",
+                "timeZone": "",
+                "accountType": ""
+              },
               "priority": {
                 "id": "",
                 "name": "",
@@ -1049,7 +867,21 @@
               "issuelinks": [],
               "lastViewed": "",
               "resolution": "",
-              "description": "",
+              "description": {
+                "type": "",
+                "version": "",
+                "content": [
+                  {
+                    "type": "",
+                    "content": [
+                      {
+                        "type": "",
+                        "text": ""
+                      }
+                    ]
+                  }
+                ]
+              },
               "environment": "",
               "fixVersions": [],
               "timeestimate": "",
@@ -1121,7 +953,8 @@
               "aggregatetimeoriginalestimate": ""
             }
           }
-        ]
+        ],
+        "nextPageToken": ""
       },
       "enabled": true,
       "parameters": [
@@ -1191,11 +1024,19 @@
         "queries": [
           {
             "query": "",
-            "structure": ""
-          },
-          {
-            "query": "",
-            "errors": ""
+            "structure": {
+              "where": {
+                "field": {
+                  "name": "",
+                  "encodedName": ""
+                },
+                "operator": "",
+                "operand": {
+                  "value": "",
+                  "encodedValue": ""
+                }
+              }
+            }
           }
         ]
       },
@@ -1228,6 +1069,7 @@
           "key": "",
           "accountId": "",
           "accountType": "",
+          "emailAddress": "",
           "name": "",
           "avatarUrls": {
             "48x48": "",
@@ -1236,22 +1078,8 @@
             "32x32": ""
           },
           "displayName": "",
-          "active": ""
-        },
-        {
-          "self": "",
-          "key": "",
-          "accountId": "",
-          "accountType": "",
-          "name": "",
-          "avatarUrls": {
-            "48x48": "",
-            "24x24": "",
-            "16x16": "",
-            "32x32": ""
-          },
-          "displayName": "",
-          "active": ""
+          "active": "",
+          "locale": ""
         }
       ],
       "enabled": true,
@@ -1289,7 +1117,9 @@
       "output_schema": {
         "self": "",
         "key": "",
+        "locale": "",
         "accountId": "",
+        "expand": "groups,applicationRoles",
         "accountType": "",
         "name": "",
         "emailAddress": "",
@@ -1304,11 +1134,22 @@
         "timeZone": "",
         "groups": {
           "size": "",
-          "items": ""
+          "items": [
+            {
+              "name": "",
+              "groupId": "",
+              "self": ""
+            }
+          ]
         },
         "applicationRoles": {
           "size": "",
-          "items": ""
+          "items": [
+            {
+              "key": "",
+              "name": ""
+            }
+          ]
         }
       },
       "enabled": true,
@@ -1333,7 +1174,9 @@
       "description": "Assigns an issue to a user based on the account and ticket ID that you have specified.",
       "category": "investigation",
       "annotation": "assign_issue",
-      "output_schema": "",
+      "output_schema": {
+        "message": ""
+      },
       "enabled": true,
       "parameters": [
         {
@@ -1368,39 +1211,33 @@
       "description": "Attaches a file that is present in FortiSOAR to an existing Jira ticket on your configured Jira server based on the ticket ID and FortiSOAR file or attachment IRI you have specified.",
       "category": "investigation",
       "annotation": "submit_file",
-      "output_schema": {
-        "data": [
-          {
+      "output_schema": [
+        {
+          "thumbnail": "",
+          "id": "",
+          "self": "",
+          "size": "",
+          "author": {
             "id": "",
             "self": "",
-            "size": "",
-            "author": {
-              "id": "",
-              "self": "",
-              "active": "",
-              "timeZone": "",
-              "accountId": "",
-              "avatarUrls": {
-                "16x16": "",
-                "24x24": "",
-                "32x32": "",
-                "48x48": ""
-              },
-              "accountType": "",
-              "displayName": "",
-              "emailAddress": ""
+            "active": "",
+            "timeZone": "",
+            "accountId": "",
+            "avatarUrls": {
+              "16x16": "",
+              "24x24": "",
+              "32x32": "",
+              "48x48": ""
             },
-            "content": "",
-            "created": "",
-            "filename": ""
-          }
-        ],
-        "status": "",
-        "_status": "",
-        "message": "",
-        "operation": "",
-        "request_id": ""
-      },
+            "accountType": "",
+            "displayName": "",
+            "emailAddress": ""
+          },
+          "content": "",
+          "created": "",
+          "filename": ""
+        }
+      ],
       "enabled": true,
       "parameters": [
         {
@@ -1529,7 +1366,8 @@
           "displayName": "",
           "name": "",
           "key": "",
-          "accountId": ""
+          "accountId": "",
+          "accountType": ""
         },
         "updateAuthor": {
           "avatarUrls": {
@@ -1545,8 +1383,10 @@
           "displayName": "",
           "name": "",
           "key": "",
-          "accountId": ""
-        }
+          "accountId": "",
+          "accountType": ""
+        },
+        "jsdPublic": ""
       },
       "enabled": true,
       "parameters": [
