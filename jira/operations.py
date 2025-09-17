@@ -1,7 +1,7 @@
 """
 Copyright start
 MIT License
-Copyright (c) 2024 Fortinet Inc
+Copyright (c) 2025 Fortinet Inc
 Copyright end
 """
 
@@ -16,8 +16,7 @@ from django.conf import settings
 
 logger = get_logger('jira')
 
-ENDPOINT = '/rest/api/2/issue/'
-SEARCH_ENDPOINT = '/rest/api/2/search'
+ENDPOINT = '/rest/api/3/issue/'
 SEARCH_JQL_ENDPOINT = '/rest/api/3/search/jql'
 
 reserved_words = ["abort", "access", "add", "after", "alias", "all", "alter", "and", "any", "as", "asc", "audit", "avg",
@@ -67,17 +66,11 @@ def make_api_call(config, method, endpoint=None, json=None, headers=None, files=
     else:
         url = server
 
-    if authentication == 'Basic':
+    if headers:
         auth = (username, token)
         to_encode = '{}:{}'.format(username, token)
         encoded_auth = b64encode(bytes(to_encode, 'utf-8')).decode('utf-8')
         headers['Authorization'] = 'Basic {}'.format(encoded_auth)
-    else:
-        if authentication == 'Personal Authentication Token':
-            auth = ''
-            headers['Authorization'] = 'Bearer {}'.format(token)
-        else:
-            raise ConnectorError('Authentication methode not implemented: {}', authentication)
     logger.info('Request URL {}'.format(url))
     try:
         response = requests.request(method=method, url=url, auth=auth, headers=headers, files=files,
@@ -148,7 +141,21 @@ def create_ticket(config, params, **kwargs):
                     "key": project_key
                 },
                 "summary": ticket_summary,
-                "description": ticket_description,
+                "description": {
+                    "content": [
+                        {
+                            "content": [
+                                {
+                                    "text": ticket_description,
+                                    "type": "text"
+                                }
+                            ],
+                            "type": "paragraph"
+                        }
+                    ],
+                    "type": "doc",
+                    "version": 1
+                },
                 "issuetype": {
                     "name": issue_type
                 },
@@ -204,6 +211,22 @@ def update_ticket(config, params, **kwargs):
         summary = params.get('summary')
         description = params.get('description')
         comment = params.get('comment')
+        if comment:
+            comment = {
+                "content": [
+                    {
+                        "content": [
+                            {
+                                "text": comment,
+                                "type": "text"
+                            }
+                        ],
+                        "type": "paragraph"
+                    }
+                ],
+                "type": "doc",
+                "version": 1
+            }
         priority = params.get('priority')
         status = params.get('status')
         other_fields = params.get('other_fields')
@@ -225,16 +248,34 @@ def update_ticket(config, params, **kwargs):
             status_response = make_api_call(config, method='POST', endpoint=endpoint, json=json.dumps(body))
         body = {
             "update": {
-                "comment": [{"add":
-                                 {"body": comment}
-                             }
-                            ]},
+                "comment": [
+                    {
+                        "add": {
+                            "body": comment
+                        }
+                    }
+                ]
+            },
             "fields": {
                 "project": {
                     "key": project_key
                 },
                 "summary": summary,
-                "description": description,
+                "description": {
+                    "content": [
+                        {
+                            "content": [
+                                {
+                                    "text": description,
+                                    "type": "text"
+                                }
+                            ],
+                            "type": "paragraph"
+                        }
+                    ],
+                    "type": "doc",
+                    "version": 1
+                },
                 "priority": {"name": priority}
             }
         }
@@ -318,7 +359,21 @@ def add_comment(config, params, **kwargs):
         issue_key = params.get('issue_key')
         comment = params.get('comment')
         body = {
-            "body": comment
+            "body": {
+                "content": [
+                    {
+                        "content": [
+                            {
+                                "text": comment,
+                                "type": "text"
+                            }
+                        ],
+                        "type": "paragraph"
+                    }
+                ],
+                "type": "doc",
+                "version": 1
+            }
         }
         endpoint = "{0}{1}{2}".format(ENDPOINT, issue_key, '/comment')
         response = make_api_call(config, method='POST', endpoint=endpoint, json=json.dumps(body))
@@ -385,7 +440,7 @@ def delete_ticket(config, params, **kwargs):
 
 def list_projects(config, params, **kwargs):
     try:
-        endpoint = '/rest/api/2/project'
+        endpoint = '/rest/api/3/project/search'
         response = make_api_call(config, method='GET', endpoint=endpoint)
         logger.info('Returning Project lists response : [{0}]'.format(response))
         if response.ok:
@@ -398,45 +453,6 @@ def list_projects(config, params, **kwargs):
 
 
 def list_tickets(config, params, **kwargs):
-    try:
-        jql_query = params.get('jql_query')
-        startAt = params.get('startAt')
-        maxResults = params.get('maxResults')
-        fields = params.get('fields')
-        if not fields:
-            fields = []
-        else:
-            if not isinstance(fields, list):
-                fields = fields.split(",")
-        endpoint = "{0}".format(SEARCH_ENDPOINT)
-        project_key = re.search(r"project\s?=\s?(\w+)", jql_query)
-        if project_key is None:
-            raise ConnectorError(
-                'Project ID is not defined properly in the JQL query, make sure to use the syntax: project = YOUR_PROJECT_ID')
-        project_key = project_key.group(1)
-
-        if project_key.lower() in reserved_words:
-            jql_query = jql_query.replace(project_key, '"' + project_key + '"')
-        logger.info('Running JQL query:{}'.format(jql_query))
-        body = {
-            "jql": jql_query,
-            "startAt": startAt,
-            "maxResults": maxResults,
-            "fields": fields
-        }
-        payload = {k: v for k, v in body.items() if v is not None and v != ''}
-        response = make_api_call(config, method='POST', endpoint=endpoint, json=json.dumps(payload))
-        logger.info('Returning Ticket lists response : [{0}]'.format(response))
-        if response.ok:
-            return response.json()
-        else:
-            raise ConnectorError('Error [{0}] occurred while fetching jira ticket status with status [{1}] code : '.
-                                 format(response.reason, response.status_code))
-    except Exception as Err:
-        raise ConnectorError(Err)
-
-
-def fetch_tickets(config, params, **kwargs):
     try:
         jql_query = params.get('jql_query')
         maxResults = params.get('maxResults')
@@ -649,7 +665,6 @@ operations = {
     'get_ticket_details': get_ticket_details,
     'list_projects': list_projects,
     'list_tickets': list_tickets,
-    'fetch_tickets': fetch_tickets,
     'validate_jql_query': validate_jql_query,
     'search_users': search_users,
     'get_user_details': get_user_details,
