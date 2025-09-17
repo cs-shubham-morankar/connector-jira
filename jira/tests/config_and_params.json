@@ -30,7 +30,6 @@
     "list_tickets": [
         {
             "jql_query": "project = FSR-XF",
-            "startAt": 0,
             "maxResults": 1,
             "fields": null
         }

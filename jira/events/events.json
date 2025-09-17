@@ -6,7 +6,7 @@
     "type": [
       "PUSH"
     ],
-    "connector_action": "fetch_tickets",
+    "connector_action": "list_tickets",
     "connector_action_inputs": {
       "jql_query": "project = JIRA_PROJECT_ID",
       "start_time": "",

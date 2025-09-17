@@ -7,7 +7,7 @@
   "cs_compatible": true,
   "version": "2.0.0",
   "category": "Ticket Creation",
-  "contributor": "Malaya",
+  "contributor": "",
   "icon_small_name": "jira_small.png",
   "icon_large_name": "jira_large.png",
   "help_online": "",
@@ -32,21 +32,7 @@
         "name": "username"
       },
       {
-        "title": "Authentication",
-        "description": "Select the authentication type Basic or Authentication Token from Jira server.",
-        "type": "select",
-        "name": "authentication",
-        "required": true,
-        "visible": true,
-        "editable": true,
-        "value": "Basic",
-        "options": [
-          "Basic",
-          "Personal Authentication Token"
-        ]
-      },
-      {
-        "title": "API Token/Bearer Token",
+        "title": "API Token",
         "description": "API Token configured for your account to access the Jira server from where the connector gets notifications.",
         "required": true,
         "editable": true,
@@ -89,8 +75,7 @@
           "visible": true,
           "type": "text",
           "name": "project_key",
-          "value": "",
-          "tooltip": "Unique project ID, e.g. JIR",
+          "tooltip": "Specify the unique project ID that represents the project under which to create the Jira ticket.",
           "placeholder": "e.g. JIR"
         },
         {
@@ -101,8 +86,7 @@
           "visible": true,
           "type": "text",
           "name": "ticket_summary",
-          "value": "",
-          "tooltip": "Ticket summary."
+          "tooltip": "Specify the summary or heading of the ticket to create on your configured Jira server."
         },
         {
           "title": "Ticket Description",
@@ -112,8 +96,7 @@
           "visible": true,
           "type": "text",
           "name": "ticket_description",
-          "value": "",
-          "tooltip": "Ticket description."
+          "tooltip": "Specify the description of the ticket to create on your configured Jira server."
         },
         {
           "title": "Ticket Type",
@@ -123,8 +106,7 @@
           "visible": true,
           "type": "text",
           "name": "issue_type",
-          "tooltip": "IT Help, Service Request, Service Request with Approvals, Task, Sub-task.",
-          "value": ""
+          "tooltip": "Specify the type of ticket to create on your configured Jira server.You can specify the following ticket types: IT Help, Service Request, Service Request with Approvals, Task, or Sub-task."
         },
         {
           "title": "Parent Key ID",
@@ -135,8 +117,7 @@
           "type": "text",
           "name": "parent",
           "placeholder": "The ID of the ticket under which you need to create subtask. This field is only needed when the ticket type is Subtask. e.g. DEMO-1",
-          "tooltip": "The ID of the ticket under which you need to create subtask. This field is only needed when the ticket type is Subtask. e.g. DEMO-1",
-          "value": ""
+          "tooltip": "The ID of the ticket under which you need to create subtask. This field is only needed when the ticket type is Subtask. e.g. DEMO-1"
         },
         {
           "title": "Priority",
@@ -146,8 +127,7 @@
           "visible": true,
           "type": "text",
           "name": "priority",
-          "tooltip": "Highest, High, Medium, Low, Lowest.",
-          "value": ""
+          "tooltip": "Specify the priority to set for the Jira ticket to update on your configured Jira server. You can specify one of the following priorities: Highest, High, Medium, Low, or Lowest."
         },
         {
           "title": "Other Fields",
@@ -157,7 +137,7 @@
           "visible": true,
           "type": "json",
           "name": "other_fields",
-          "tooltip": "Other fields can be Reporter, Assignee, Components etc.",
+          "tooltip": "Specify fields such as Reporter, Assignee, or Components to set while creating a ticket.",
           "placeholder": "e.g {\"assignee\": {\"accountId\": \"5ac21efbb31cf552a3acb08c\"}}"
         }
       ]
@@ -439,8 +419,7 @@
           "type": "text",
           "name": "issue_key",
           "placeholder": "e.g. JIR-144",
-          "value": "",
-          "tooltip": "Ticket ID. e.g. JIR-144"
+          "tooltip": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-000, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}."
         }
       ]
     },
@@ -481,266 +460,6 @@
       "description": "Retrieves a list and details of tickets associated with a project from your configured Jira server, based on the project key and other input parameters you have specified.",
       "category": "investigation",
       "annotation": "list_tickets",
-      "output_schema": {
-        "expand": "",
-        "startAt": "",
-        "maxResults": "",
-        "total": "",
-        "issues": [
-          {
-            "expand": "",
-            "id": "",
-            "self": "",
-            "key": "",
-            "fields": {
-              "statuscategorychangedate": "",
-              "issuetype": {
-                "self": "",
-                "id": "",
-                "description": "",
-                "iconUrl": "",
-                "name": "",
-                "subtask": "",
-                "avatarId": "",
-                "entityId": "",
-                "hierarchyLevel": ""
-              },
-              "timespent": "",
-              "customfield_10030": "",
-              "project": {
-                "self": "",
-                "id": "",
-                "key": "",
-                "name": "",
-                "projectTypeKey": "",
-                "simplified": "",
-                "avatarUrls": {
-                  "48x48": "",
-                  "24x24": "",
-                  "16x16": "",
-                  "32x32": ""
-                }
-              },
-              "customfield_10031": "",
-              "customfield_10032": "",
-              "fixVersions": [],
-              "aggregatetimespent": "",
-              "resolution": "",
-              "customfield_10035": "",
-              "customfield_10036": "",
-              "customfield_10037": "",
-              "customfield_10027": "",
-              "customfield_10028": "",
-              "customfield_10029": "",
-              "resolutiondate": "",
-              "workratio": "",
-              "lastViewed": "",
-              "watches": {
-                "self": "",
-                "watchCount": "",
-                "isWatching": ""
-              },
-              "created": "",
-              "customfield_10020": "",
-              "customfield_10021": "",
-              "customfield_10022": "",
-              "priority": {
-                "self": "",
-                "iconUrl": "",
-                "name": "",
-                "id": ""
-              },
-              "customfield_10023": "",
-              "customfield_10024": "",
-              "customfield_10025": "",
-              "customfield_10026": "",
-              "labels": [],
-              "customfield_10016": "",
-              "customfield_10017": "",
-              "customfield_10018": {
-                "hasEpicLinkFieldDependency": "",
-                "showField": "",
-                "nonEditableReason": {
-                  "reason": "",
-                  "message": ""
-                }
-              },
-              "customfield_10019": "",
-              "timeestimate": "",
-              "aggregatetimeoriginalestimate": "",
-              "versions": [],
-              "issuelinks": [],
-              "assignee": {
-                "self": "",
-                "accountId": "",
-                "emailAddress": "",
-                "avatarUrls": {
-                  "48x48": "",
-                  "24x24": "",
-                  "16x16": "",
-                  "32x32": ""
-                },
-                "displayName": "",
-                "active": "",
-                "timeZone": "",
-                "accountType": ""
-              },
-              "updated": "",
-              "status": {
-                "self": "",
-                "description": "",
-                "iconUrl": "",
-                "name": "",
-                "id": "",
-                "statusCategory": {
-                  "self": "",
-                  "id": "",
-                  "key": "",
-                  "colorName": "",
-                  "name": ""
-                }
-              },
-              "components": [],
-              "customfield_10050": "",
-              "timeoriginalestimate": "",
-              "customfield_10051": "",
-              "customfield_10052": "",
-              "customfield_10053": "",
-              "description": "",
-              "customfield_10010": "",
-              "customfield_10054": "",
-              "customfield_10014": "",
-              "customfield_10015": "",
-              "customfield_10005": "",
-              "customfield_10049": [],
-              "customfield_10006": "",
-              "security": "",
-              "customfield_10007": "",
-              "customfield_10008": "",
-              "customfield_10009": "",
-              "aggregatetimeestimate": "",
-              "summary": "",
-              "creator": {
-                "self": "",
-                "accountId": "",
-                "emailAddress": "",
-                "avatarUrls": {
-                  "48x48": "",
-                  "24x24": "",
-                  "16x16": "",
-                  "32x32": ""
-                },
-                "displayName": "",
-                "active": "",
-                "timeZone": "",
-                "accountType": ""
-              },
-              "subtasks": [],
-              "customfield_10040": [],
-              "customfield_10041": "",
-              "customfield_10042": "",
-              "customfield_10043": "",
-              "reporter": {
-                "self": "",
-                "accountId": "",
-                "emailAddress": "",
-                "avatarUrls": {
-                  "48x48": "",
-                  "24x24": "",
-                  "16x16": "",
-                  "32x32": ""
-                },
-                "displayName": "",
-                "active": "",
-                "timeZone": "",
-                "accountType": ""
-              },
-              "customfield_10044": "",
-              "aggregateprogress": {
-                "progress": "",
-                "total": ""
-              },
-              "customfield_10001": "",
-              "customfield_10045": "",
-              "customfield_10046": "",
-              "customfield_10002": [],
-              "customfield_10047": "",
-              "customfield_10003": "",
-              "customfield_10004": "",
-              "customfield_10048": "",
-              "customfield_10038": "",
-              "customfield_10039": "",
-              "environment": "",
-              "duedate": "",
-              "progress": {
-                "progress": "",
-                "total": ""
-              },
-              "votes": {
-                "self": "",
-                "votes": "",
-                "hasVoted": ""
-              }
-            }
-          }
-        ]
-      },
-      "enabled": true,
-      "parameters": [
-        {
-          "title": "JQL Query",
-          "description": "Specify the Jira query to filter and list the tickets as per query parameters. You must specify at least one query parameter. For example, project = JIRA_PROJECT_ID.",
-          "toolbox": "Check JQL syntax here https://confluence.atlassian.com/jirasoftware/blog/2015/06/search-jira-like-a-boss-with-jql, minimum is: project = PROJECT_NAME",
-          "required": true,
-          "editable": true,
-          "visible": true,
-          "type": "text",
-          "name": "jql_query",
-          "placeholder": "e.g. project = JIRA_PROJECT_ID and updatedDate < -1d",
-          "value": "",
-          "tooltip": "JQL Query. e.g. project = JIRA_PROJECT_ID and updatedDate < -1d"
-        },
-        {
-          "title": "Start At",
-          "description": "(Optional) Specify the starting index for retrieving tickets from Jira. By default, this is set to 0.",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "type": "integer",
-          "name": "startAt",
-          "tooltip": "Start index. Default is 0.",
-          "value": "0"
-        },
-        {
-          "title": "Max Results",
-          "description": "(Optional) Specify the maximum number of tickets that this operation should return. By default, this is set to 50.",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "type": "integer",
-          "name": "maxResults",
-          "tooltip": "Maximum number of tickets to be fetch. Default is 50.",
-          "value": "50"
-        },
-        {
-          "title": "Fields",
-          "description": "(Optional) Specify fields such as ID, Key, Status, Priority, and Reporter that you can choose to include and display in the output. For example: [\"id\",\"key\",\"status\",\"priority\"]",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "type": "text",
-          "name": "fields",
-          "tooltip": "Fields are different types of information in the system displayed in output e.g,id, Key, Status, Priority, Reporter. Provide in list.",
-          "placeholder": "e.g. assignee"
-        }
-      ]
-    },
-    {
-      "operation": "fetch_tickets",
-      "title": "Fetch Tickets",
-      "description": "Retrieves a list and details of tickets associated with a project from your configured Jira server, based on the project key and other input parameters you have specified.",
-      "category": "investigation",
-      "annotation": "fetch_tickets",
       "output_schema": {
         "issues": [
           {
@@ -968,8 +687,7 @@
           "type": "text",
           "name": "jql_query",
           "placeholder": "e.g. project = JIRA_PROJECT_ID",
-          "value": "",
-          "tooltip": "JQL Query. e.g. project = JIRA_PROJECT_ID"
+          "tooltip": "Specify the Jira query to filter and list the tickets as per query parameters. You must specify at least one query parameter. For example, project = JIRA_PROJECT_ID."
         },
         {
           "title": "From Date",
@@ -978,7 +696,8 @@
           "visible": true,
           "type": "datetime",
           "name": "start_time",
-          "description": "Specify the start date of the query from when you want to retrieve the tickets from Jira."
+          "description": "Specify the start date of the query from when you want to retrieve the tickets from Jira.",
+          "tooltip": "Specify the start date of the query from when you want to retrieve the tickets from Jira."
         },
         {
           "title": "Max Results",
@@ -988,7 +707,7 @@
           "visible": true,
           "type": "integer",
           "name": "maxResults",
-          "tooltip": "Maximum number of tickets to be fetch. Default is 50.",
+          "tooltip": "Specify the maximum number of tickets that this operation should return. By default, this is set to 50.",
           "value": "50"
         },
         {
@@ -1052,8 +771,7 @@
           "type": "text",
           "name": "jql_query",
           "placeholder": "e.g. project = TIC and updatedDate < -1d",
-          "value": "",
-          "tooltip": "JQL Query. e.g. project = TIC and updatedDate < -1d"
+          "tooltip": "Specify the Jira query to validate with the Jira Server. e.g. project = TIC and updatedDate < -1d"
         }
       ]
     },
@@ -1092,7 +810,7 @@
           "visible": true,
           "type": "integer",
           "name": "startAt",
-          "tooltip": "Start index. Default is 0.",
+          "tooltip": "Specify the starting index for retrieving tickets from Jira. By default, this is set to 0.",
           "value": "0"
         },
         {
@@ -1103,7 +821,7 @@
           "visible": true,
           "type": "integer",
           "name": "maxResults",
-          "tooltip": "Maximum number of users to be fetch. Default is 50.",
+          "tooltip": "Specify the maximum number of tickets that this operation should return. By default, this is set to 50.",
           "value": "50"
         }
       ]
@@ -1163,8 +881,7 @@
           "visible": true,
           "type": "text",
           "name": "accountId",
-          "placeholder": "e.g. 5b10ac8d82e05b22cc7d4ef5",
-          "value": ""
+          "placeholder": "e.g. 5b10ac8d82e05b22cc7d4ef5"
         }
       ]
     },
@@ -1188,8 +905,7 @@
           "visible": true,
           "type": "text",
           "name": "accountId",
-          "placeholder": "e.g. 5b10ac8d82e05b22cc7d4ef5",
-          "value": ""
+          "placeholder": "e.g. 5b10ac8d82e05b22cc7d4ef5"
         },
         {
           "title": "Ticket ID",
@@ -1249,8 +965,7 @@
           "type": "text",
           "name": "issue_key",
           "placeholder": "e.g. JIR-144",
-          "value": "",
-          "tooltip": "Ticket ID. e.g. JIR-144"
+          "tooltip": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-144, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}."
         },
         {
           "title": "File or Attachment IRI",
@@ -1271,8 +986,7 @@
                 "editable": true,
                 "visible": true,
                 "type": "text",
-                "name": "value",
-                "value": ""
+                "name": "value"
               }
             ],
             "File IRI": [
@@ -1283,8 +997,7 @@
                 "editable": true,
                 "visible": true,
                 "type": "text",
-                "name": "value",
-                "value": ""
+                "name": "value"
               }
             ]
           },
@@ -1315,8 +1028,7 @@
           "type": "text",
           "name": "issue_key",
           "placeholder": "e.g. JIR-144",
-          "value": "",
-          "tooltip": "Ticket ID. e.g. JIR-144"
+          "tooltip": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-144, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}."
         },
         {
           "title": "URL",
@@ -1336,7 +1048,7 @@
           "visible": true,
           "type": "text",
           "name": "title",
-          "tooltip": "Title of the ticket. e.g. TSTSUP-111"
+          "tooltip": "Specify the title to add for the specified issue that you are adding to the Jira ticket. e.g. TSTSUP-111"
         }
       ]
     },
@@ -1399,8 +1111,7 @@
           "type": "text",
           "name": "issue_key",
           "placeholder": "e.g. JIR-144",
-          "value": "",
-          "tooltip": "Title ID. e.g. JIR-144"
+          "tooltip": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-144, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}."
         },
         {
           "title": "Comment",
@@ -1410,8 +1121,7 @@
           "visible": true,
           "type": "text",
           "name": "comment",
-          "value": "",
-          "tooltip": "Ticket Comment."
+          "tooltip": "Specify the comment to add to an existing Jira ticket."
         }
       ]
     },
@@ -1479,8 +1189,7 @@
           "type": "text",
           "name": "issue_key",
           "placeholder": "e.g. JIR-144",
-          "value": "",
-          "tooltip": "Ticket ID. JIR-144."
+          "tooltip": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-144, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}."
         },
         {
           "title": "Start At",
@@ -1490,7 +1199,7 @@
           "visible": true,
           "type": "integer",
           "name": "startAt",
-          "tooltip": "Start index. Default is 0.",
+          "tooltip": "Specify the starting index for retrieving tickets from Jira. By default, this is set to 0.",
           "value": "0"
         },
         {
@@ -1501,7 +1210,7 @@
           "visible": true,
           "type": "integer",
           "name": "maxResults",
-          "tooltip": "Maximum number of tickets to be fetch. Default is 50.",
+          "tooltip": "Specify the maximum number of tickets that this operation should return. By default, this is set to 50.",
           "value": "50"
         },
         {
@@ -1516,7 +1225,7 @@
             "Descending"
           ],
           "name": "orderBy",
-          "tooltip": "Field by which you want to sort the tickets.Possible values are Ascending or Descending."
+          "tooltip": "Select the order in which to sort the tickets. You can select from the following options: Ascending or Descending"
         }
       ]
     },
@@ -1541,8 +1250,7 @@
           "type": "text",
           "name": "issue_key",
           "placeholder": "e.g. JIR-144",
-          "value": "",
-          "tooltip": "Ticket ID. e.g. JIR-144"
+          "tooltip": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-144, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}."
         },
         {
           "title": "Status",
@@ -1552,8 +1260,7 @@
           "visible": true,
           "type": "text",
           "name": "status",
-          "value": "",
-          "tooltip": "Ticket Status. e.g. To Do, In Progress, or Done."
+          "tooltip": "Specify the status to set for an existing Jira ticket. You can add status such as To Do, In Progress, or Done."
         }
       ]
     },
@@ -1578,8 +1285,7 @@
           "type": "text",
           "name": "issue_key",
           "placeholder": "e.g. JIR-144",
-          "value": "",
-          "tooltip": "Ticket ID. e.g. JIR-144"
+          "tooltip": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-144, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}."
         },
         {
           "title": "Project Key",
@@ -1590,8 +1296,7 @@
           "type": "text",
           "name": "project_key",
           "placeholder": "e.g. JIR",
-          "value": "",
-          "tooltip": "Project Key. e.g. JIR"
+          "tooltip": "Specify the unique project ID that represents the project under which to update the Jira ticket."
         },
         {
           "title": "Summary",
@@ -1601,8 +1306,7 @@
           "visible": true,
           "type": "text",
           "name": "summary",
-          "value": "",
-          "tooltip": "Ticket Summary."
+          "tooltip": "Specify the summary or heading of the ticket to update on your configured Jira server."
         },
         {
           "title": "Comment",
@@ -1612,8 +1316,7 @@
           "visible": true,
           "type": "text",
           "name": "comment",
-          "value": "",
-          "tooltip": "Ticket Comment."
+          "tooltip": "Specify the comment to add to an existing Jira ticket."
         },
         {
           "title": "Priority",
@@ -1623,8 +1326,7 @@
           "visible": true,
           "type": "text",
           "name": "priority",
-          "tooltip": "Ticket Priority. e.g. Highest, High, Medium, Low, Lowest",
-          "value": ""
+          "tooltip": "Specify the priority to update for the Jira ticket. You can specify one of the following priorities: Highest, High, Medium, Low, or Lowest."
         },
         {
           "title": "Description",
@@ -1634,8 +1336,7 @@
           "visible": true,
           "type": "text",
           "name": "description",
-          "value": "",
-          "tooltip": "Ticket Description."
+          "tooltip": "Specify the description to add to the Jira ticket when you are updating it on your configured Jira server."
         },
         {
           "title": "Status",
@@ -1645,8 +1346,7 @@
           "visible": true,
           "type": "text",
           "name": "status",
-          "value": "",
-          "tooltip": "Ticket Status. e.g. To Do, In Progress, or Done."
+          "tooltip": "Specify the status to set for an existing Jira ticket. You can add status such as To Do, In Progress, or Done."
         },
         {
           "title": "Other Fields",
@@ -1656,7 +1356,7 @@
           "visible": true,
           "type": "json",
           "name": "other_fields",
-          "tooltip": "Other fields can be Components,Reporter,Assignee etc which needs to be updated.",
+          "tooltip": "Specify fields such as Reporter, Assignee, or Components to set while updating the ticket.",
           "placeholder": "e.g {\"assignee\": {\"accountId\": \"5ac21efbb31cf552a3acb08c\"}}"
         }
       ]
@@ -1686,8 +1386,7 @@
           "type": "text",
           "name": "jira_key",
           "placeholder": "e.g. JIR-144",
-          "value": "",
-          "tooltip": "Ticket ID. e.g. JIR-144"
+          "tooltip": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-144, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}."
         },
         {
           "title": "FortiSOAR Username",
@@ -1697,8 +1396,7 @@
           "visible": true,
           "type": "text",
           "name": "cyops_username",
-          "value": "",
-          "tooltip": "FortiSOAR Username"
+          "tooltip": "Specify the username of the FortiSOAR instance where you want to update the Jira ticket."
         },
         {
           "title": "FortiSOAR Password",
@@ -1708,8 +1406,7 @@
           "visible": true,
           "type": "text",
           "name": "cyops_password",
-          "value": "",
-          "tooltip": "FortiSOAR Password"
+          "tooltip": "Specify the password of the FortiSOAR instance where you want to update the Jira ticket."
         }
       ]
     },
@@ -1734,8 +1431,7 @@
           "type": "text",
           "name": "issue_key",
           "placeholder": "e.g. JIR-144",
-          "value": "",
-          "tooltip": "Ticket ID. e.g. JIR-144"
+          "tooltip": "Specify the unique ID associated with each ticket to retrieve from your configured Jira server. You can enter the ticket ID directly, such as JIR-144, or use dynamic variables in this field to enter the ticket ID in the Jinja format {{vars.result.data.key}}."
         },
         {
           "title": "Delete Subtasks",
@@ -1745,8 +1441,7 @@
           "visible": true,
           "type": "checkbox",
           "name": "delete_subtask",
-          "tooltip": "If the ticket has subtasks you must set the parameter Delete Subtasks=true to delete the ticket.",
-          "value": ""
+          "tooltip": "Select this option, i.e., set it to true to delete subtasks associated with the Jira ticket. If the ticket has subtasks then you must select this option to successfully delete the ticket from your configured Jira server."
         }
       ]
     }
