@@ -1,7 +1,7 @@
 {
   "name": "jira",
   "label": "Jira",
-  "description": "Jira Service Desk Connector for issue creating, updating and deleting.",
+  "description": "The Jira allows users to seamlessly interact with Jira Cloud by creating, updating, and deleting issues. It simplifies task management and integrates Jira actions directly into your applications or workflows.",
   "publisher": "Fortinet",
   "cs_approved": true,
   "cs_compatible": true,
@@ -10,7 +10,7 @@
   "contributor": "",
   "icon_small_name": "jira_small.png",
   "icon_large_name": "jira_large.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/2.0.0/jira/200/jira-v2-0-0",
   "configuration": {
     "fields": [
       {
@@ -696,8 +696,8 @@
           "visible": true,
           "type": "datetime",
           "name": "start_time",
-          "description": "Specify the start date of the query from when you want to retrieve the tickets from Jira.",
-          "tooltip": "Specify the start date of the query from when you want to retrieve the tickets from Jira."
+          "description": "(Optional) Specify the start date of the tickets to filter results retrieved from the JIRA query",
+          "tooltip": "Specify the start date of the tickets to filter results retrieved from the JIRA query"
         },
         {
           "title": "Max Results",
