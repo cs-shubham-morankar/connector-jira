@@ -103,7 +103,7 @@ def check_health(config):
     try:
         projects = list_projects(config, None)
         logger.debug('Health Check: {}'.format(projects))
-        if len(projects) > 0:
+        if len(projects['values']) > 0:
             return True
         else:
             logger.exception(
@@ -111,8 +111,8 @@ def check_health(config):
             raise ConnectorError(
                 'Error occurred while connecting to server, check credentials and make sure you have at least one JIRA project')
     except Exception as Err:
-        logger.exception('Error occurred while connecting to server: {}'.format(str(Err)))
-        raise ConnectorError('Error occurred while connecting to server: {}'.format(Err))
+        logger.exception('Error occurred while connecting to server: {0}'.format(str(Err)))
+        raise ConnectorError('Error occurred while connecting to server: {0}'.format(Err))
 
 
 def check_payload(payload):
